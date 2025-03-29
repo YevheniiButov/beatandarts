@@ -18,11 +18,11 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 2rem;
-      background-color: #f2f2f2;
+      background-color: #e4e8ec; /* изменено */
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
     header img {
-      height: 50px;
+      display: none; /* скрыт логотип */
     }
     nav {
       display: flex;
@@ -38,7 +38,7 @@
     }
     .hero {
       text-align: center;
-      padding: 3rem 1.5rem 2rem 1.5rem; /* padding-bottom уменьшен */
+      padding: 3rem 1.5rem 2rem 1.5rem;
       margin-bottom: 0;
     }
     .hero h1 {
@@ -68,7 +68,7 @@
       background: #5d6d7c;
     }
     .features {
-      padding: 1.5rem 1.5rem 3rem 1.5rem; /* padding-top уменьшен */
+      padding: 1.5rem 1.5rem 3rem 1.5rem;
     }
     .features h2 {
       text-align: center;
@@ -82,17 +82,13 @@
       gap: 1.5rem;
     }
     .card {
-      background-color: #ffffff;
+      background-color: #e4e8ec; /* изменено */
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       flex: 1 1 180px;
       max-width: 200px;
       padding: 1rem;
       text-align: center;
-    }
-    .card img {
-      width: 40px;
-      margin-bottom: 0.75rem;
     }
     .card h3 {
       margin: 0.5rem 0 0.3rem;
@@ -113,7 +109,6 @@
 </head>
 <body>
   <header>
-    <img src="/static/favicon.png" alt="Logo">
     <nav>
       <a href="/">Home</a>
       <a href="/big-info">BIG Info</a>
@@ -133,22 +128,18 @@
     <h2>Features</h2>
     <div class="cards">
       <div class="card">
-        <img src="/static/platform.png" alt="Platform icon">
         <h3>About the Platform</h3>
         <p>Online preparation for BIG registration in the Netherlands for dentists trained abroad.</p>
       </div>
       <div class="card">
-        <img src="/static/tests.png" alt="Tests icon">
         <h3>Tests & Simulations</h3>
         <p>Practice BI-toets and other real exam simulations online in one place.</p>
       </div>
       <div class="card">
-        <img src="/static/materials.png" alt="Materials icon">
         <h3>Learning Materials</h3>
         <p>Guides, books, syllabi and step-by-step instructions for the full registration procedure.</p>
       </div>
       <div class="card">
-        <img src="/static/tools.png" alt="Tools icon">
         <h3>Interactive Tools</h3>
         <p>Flashcards, vocabulary, clinical phrases and tools to boost your Dutch dental skills.</p>
       </div>
