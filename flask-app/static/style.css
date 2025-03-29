@@ -22,7 +22,6 @@ body {
     font-weight: 500;
   }
   
-  
   .hero {
     text-align: center;
     padding: 4rem 2rem 2rem;
@@ -102,8 +101,9 @@ body {
     font-size: 0.85rem;
     color: #888;
   }
-  /* ======== MOBILE FRIENDLY (до 768px) ======== */
-@media (max-width: 768px) {
+  
+  /* MOBILE FRIENDLY */
+  @media (max-width: 768px) {
     .hero {
       padding: 2rem 1rem;
     }
@@ -144,8 +144,9 @@ body {
       margin-top: 0.5rem;
     }
   }
-  /* ===== MOBILE FLOATING BUTTON ===== */
-.mobile-fab {
+  
+  /* Floating Button on Mobile */
+  .mobile-fab {
     display: none;
     position: fixed;
     bottom: 20px;
@@ -158,17 +159,17 @@ body {
     font-weight: 600;
     text-decoration: none;
     font-size: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 1000;
   }
   
-  /* Только на телефонах */
   @media (max-width: 768px) {
     .mobile-fab {
       display: block;
     }
   }
-
+  
+  /* Logo Branding */
   .brand-text {
     font-family: 'Quicksand', sans-serif;
     font-weight: 600;
@@ -177,20 +178,21 @@ body {
     transition: all 0.3s ease;
     cursor: default;
   }
-
+  
   .brand-text:hover {
     transform: scale(1.05);
     color: #0077cc;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
-
+  
+  /* Login/Register Form */
   .form-container {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 3rem auto;
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.85);
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     text-align: left;
   }
   
@@ -198,6 +200,7 @@ body {
     text-align: center;
     margin-bottom: 1.5rem;
     font-weight: 400;
+    font-size: 1.8rem;
   }
   
   form label {
@@ -208,7 +211,8 @@ body {
   }
   
   form input[type="text"],
-  form input[type="password"] {
+  form input[type="password"],
+  form input[type="email"] {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ccc;
@@ -220,8 +224,9 @@ body {
   
   form button {
     margin-top: 2rem;
+    max-width: 250px;
     width: 100%;
-    padding: 1rem;
+    padding: 0.9rem 1.5rem;
     background: #7c8b9f;
     color: white;
     border: none;
@@ -230,6 +235,7 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s;
+    align-self: center;
   }
   
   form button:hover {
@@ -243,6 +249,23 @@ body {
     text-align: center;
   }
   
+  /* Mobile tweaks */
+  @media (max-width: 480px) {
+    .form-container {
+      padding: 1.5rem 1rem;
+    }
+  
+    form button {
+      max-width: 100%;
+      font-size: 0.95rem;
+    }
+  
+    .form-container h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* Profile Upload & BIG Steps */
   .profile-title {
     text-align: center;
     font-weight: 400;
@@ -282,6 +305,7 @@ body {
     background-color: #5d6d7c;
   }
   
+  /* Registration Page */
   .registration {
     max-width: 900px;
     margin: 0 auto;
@@ -314,7 +338,7 @@ body {
     font-size: 1rem;
     line-height: 1.6;
   }
-
+  
   .big-layout {
     display: flex;
     gap: 2rem;
