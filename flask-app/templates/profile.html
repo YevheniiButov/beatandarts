@@ -3,8 +3,8 @@
 {% block title %}Your Profile — Become a Tandarts{% endblock %}
 
 {% block content %}
-  <div class="container" style="max-width: 700px; margin: 3rem auto;">
-    <h1 style="text-align: center; font-weight: 400; color: #2f3e46;">
+  <div class="form-container" style="max-width: 700px;">
+    <h1 class="profile-title">
       {% if lang == 'ru' %}Добро пожаловать в профиль
       {% elif lang == 'uk' %}Ласкаво просимо до профілю
       {% elif lang == 'nl' %}Welkom op je profiel
@@ -15,12 +15,12 @@
       {% endif %}
     </h1>
 
-    <div class="info" style="margin-top: 2rem; font-size: 1rem;">
+    <div class="info">
       <p><strong>Name:</strong> {{ name }}</p>
       <p><strong>Email:</strong> {{ email }}</p>
 
-      <form action="{{ url_for('upload', lang=lang) }}" method="post" enctype="multipart/form-data">
-        <label for="cv" style="margin-top: 1.5rem; font-weight: 600;">
+      <form action="{{ url_for('upload', lang=lang) }}" method="post" enctype="multipart/form-data" class="upload-form">
+        <label for="cv">
           {% if lang == 'ru' %}Загрузите ваше резюме
           {% elif lang == 'uk' %}Завантажте своє резюме
           {% elif lang == 'nl' %}Upload je CV
@@ -32,7 +32,7 @@
         </label>
         <input type="file" id="cv" name="cv">
 
-        <label for="doc" style="margin-top: 1.5rem; font-weight: 600;">
+        <label for="doc">
           {% if lang == 'ru' %}Загрузите документы для BIG
           {% elif lang == 'uk' %}Завантажте документи для BIG
           {% elif lang == 'nl' %}Upload BIG-documenten
@@ -44,7 +44,7 @@
         </label>
         <input type="file" id="doc" name="doc">
 
-        <button type="submit" style="margin-top: 2rem; padding: 0.8rem 1.5rem; background-color: #7c8b9f; color: white; border: none; border-radius: 6px; font-size: 1rem;">
+        <button type="submit">
           {% if lang == 'ru' %}Сохранить документы
           {% elif lang == 'uk' %}Зберегти документи
           {% elif lang == 'nl' %}Documenten opslaan

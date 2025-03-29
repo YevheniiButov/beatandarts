@@ -3,8 +3,8 @@
 {% block title %}Register — Become a Tandarts{% endblock %}
 
 {% block content %}
-  <div class="container" style="max-width: 500px; margin: 2rem auto;">
-    <h1 style="text-align: center; font-weight: 400;">
+  <div class="form-container">
+    <h1>
       {% if lang == 'ru' %}Создайте аккаунт
       {% elif lang == 'uk' %}Створіть акаунт
       {% elif lang == 'nl' %}Maak een account aan
@@ -15,7 +15,7 @@
       {% endif %}
     </h1>
 
-    <form action="{{ url_for('register', lang=lang) }}" method="post" style="display: flex; flex-direction: column;">
+    <form action="{{ url_for('register', lang=lang) }}" method="post">
       <label for="name">
         {% if lang == 'ru' %}Полное имя
         {% elif lang == 'uk' %}Повне ім’я
@@ -64,7 +64,7 @@
       </label>
       <input type="password" id="confirm" name="confirm" required>
 
-      <button type="submit" style="margin-top: 2rem; padding: 0.8rem; background-color: #7c8b9f; color: white; border: none; border-radius: 6px; font-size: 1rem;">
+      <button type="submit">
         {% if lang == 'ru' %}Зарегистрироваться
         {% elif lang == 'uk' %}Зареєструватися
         {% elif lang == 'nl' %}Registreren
