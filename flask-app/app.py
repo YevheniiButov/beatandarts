@@ -36,17 +36,24 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     lang = request.args.get("lang", "en") if request.method == "GET" else request.form.get("lang", "en")
+
     if request.method == "POST":
         name = request.form.get("name")
         password = request.form.get("password")
+
         user = User.query.filter_by(name=name).first()
         if user and bcrypt.check_password_hash(user.password, password):
             session['user_id'] = user.id
             session['user_name'] = user.name
             session['user_email'] = user.email
-            return redirect(url_for("profile", lang=lang))
+
+            # Редирект на Streamlit после логина
+            return redirect(
+                f"https://beatandarts-fzmm5jczecx7tuqrptrmhq.streamlit.app/?lang={lang}&name={user.name}&email={user.email}"
+            )
         else:
             return render_template("login.html", error="Invalid name or password.", lang=lang)
+
     return render_template("login.html", error=None, lang=lang)
 
 @app.route("/logout")
@@ -61,32 +68,40 @@ def big_info():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     lang = request.args.get("lang", "en") if request.method == "GET" else request.form.get("lang", "en")
+
     if request.method == "POST":
         name = request.form.get("name")
         email = request.form.get("email")
         password = request.form.get("password")
         confirm = request.form.get("confirm")
+
         if password != confirm:
             flash("Passwords do not match.")
             return render_template("register.html", lang=lang)
+
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             flash("Email is already registered.")
             return render_template("register.html", lang=lang)
+
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         new_user = User(name=name, email=email, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
+
         session['user_id'] = new_user.id
         session['user_name'] = new_user.name
         session['user_email'] = new_user.email
+
         return redirect(url_for("profile", lang=lang))
+
     return render_template("register.html", lang=lang)
 
 @app.route("/profile", methods=["GET"])
 def profile():
     if 'user_id' not in session:
         return redirect(url_for("login", lang=request.args.get("lang", "en")))
+
     name = session.get("user_name", "User")
     email = session.get("user_email", "user@example.com")
     return render_template("profile.html", name=name, email=email)
@@ -95,12 +110,15 @@ def profile():
 def upload():
     cv = request.files.get("cv")
     doc = request.files.get("doc")
+
     if cv:
         filename = secure_filename(cv.filename)
         cv.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
     if doc:
         filename = secure_filename(doc.filename)
         doc.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
     return redirect(url_for("profile", lang=request.args.get("lang", "en")))
 
 if __name__ == "__main__":

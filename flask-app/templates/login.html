@@ -1,123 +1,61 @@
 {% extends "base.html" %}
 
-{% block title %}BIG Registration — Step-by-Step Guide{% endblock %}
+{% block title %}Login — Become a Tandarts{% endblock %}
 
 {% block content %}
-  <section class="content" style="max-width: 900px; margin: auto; padding: 2rem 1.5rem;">
-    <h1 style="text-align: center; font-weight: 400; font-size: 2.2rem; color: #2f3e46;">
-      {% if lang == 'ru' %} Процедура регистрации в BIG
-      {% elif lang == 'uk' %} Процедура реєстрації в BIG
-      {% elif lang == 'nl' %} BIG-registratieprocedure
-      {% elif lang == 'es' %} Procedimiento de registro BIG
-      {% elif lang == 'tr' %} BIG Kaydı Süreci
-      {% elif lang == 'fa' %} روند ثبت‌نام در BIG
-      {% else %} BIG Registration Procedure
+  <div class="form-container">
+    <h1>
+      {% if lang == 'ru' %} Вход в аккаунт
+      {% elif lang == 'uk' %} Увійти до акаунта
+      {% elif lang == 'nl' %} Inloggen
+      {% elif lang == 'es' %} Iniciar sesión
+      {% elif lang == 'tr' %} Giriş yap
+      {% elif lang == 'fa' %} ورود
+      {% else %} Log In
       {% endif %}
     </h1>
 
-    <div class="step">
-      <h2>1. Credential Evaluation (IDW)</h2>
-      <p>
-        {% if lang == 'ru' %}
-          Подайте ваш иностранный диплом и квалификацию на признание через IDW (Internationale Diplomawaardering).
-        {% elif lang == 'uk' %}
-          Надішліть свій диплом і кваліфікацію на визнання через IDW.
-        {% elif lang == 'nl' %}
-          Laat je buitenlandse diploma en kwalificaties erkennen via IDW.
-        {% elif lang == 'es' %}
-          Presenta tu título extranjero para su reconocimiento a través de IDW.
-        {% elif lang == 'tr' %}
-          Yabancı diplomanızı IDW aracılığıyla denklik için gönderin.
-        {% elif lang == 'fa' %}
-          مدرک تحصیلی خود را برای ارزیابی به IDW ارسال کنید.
-        {% else %}
-          Submit your foreign diploma and qualifications for recognition through IDW (Internationale Diplomawaardering).
-        {% endif %}
-      </p>
-    </div>
+    <form method="post" action="{{ url_for('login') }}">
+      <input type="hidden" name="lang" value="{{ lang }}">
 
-    <div class="step">
-      <h2>2. Language Proficiency</h2>
-      <p>
-        {% if lang == 'ru' %}
-          Докажите знание нидерландского языка (минимум уровень B2), включая медицинский голландский.
-        {% elif lang == 'uk' %}
-          Підтвердіть знання нідерландської мови (мінімум B2), включаючи медичну термінологію.
-        {% elif lang == 'nl' %}
-          Toon aan dat je Nederlands beheerst op minimaal B2-niveau, inclusief medisch Nederlands.
-        {% elif lang == 'es' %}
-          Demuestra competencia en neerlandés (mínimo nivel B2), incluyendo terminología médica.
-        {% elif lang == 'tr' %}
-          En az B2 seviyesinde Hollandaca bilgisi gösterin, tıbbi Hollandaca dahil.
-        {% elif lang == 'fa' %}
-          مهارت زبان هلندی خود را تا سطح B2 (به ویژه زبان پزشکی) نشان دهید.
-        {% else %}
-          Demonstrate proficiency in Dutch (minimum B2 level), including medical Dutch.
+      <label for="name">
+        {% if lang == 'ru' %} Имя
+        {% elif lang == 'uk' %} Ім’я
+        {% elif lang == 'nl' %} Naam
+        {% elif lang == 'es' %} Nombre
+        {% elif lang == 'tr' %} İsim
+        {% elif lang == 'fa' %} نام
+        {% else %} Name
         {% endif %}
-      </p>
-    </div>
+      </label>
+      <input type="text" id="name" name="name" required>
 
-    <div class="step">
-      <h2>3. BI-Toets (Basic Medical Knowledge)</h2>
-      <p>
-        {% if lang == 'ru' %}
-          Сдайте экзамен BI, проверяющий базовые медицинские знания и понимание системы здравоохранения Нидерландов.
-        {% elif lang == 'uk' %}
-          Складіть іспит BI, який перевіряє базові медичні знання.
-        {% elif lang == 'nl' %}
-          Slaag voor het BI-examen om je medische basiskennis te bewijzen.
-        {% elif lang == 'es' %}
-          Aprueba el examen BI que evalúa conocimientos médicos básicos.
-        {% elif lang == 'tr' %}
-          BI sınavını geçin, temel tıbbi bilginizi gösterin.
-        {% elif lang == 'fa' %}
-          آزمون BI را برای اثبات دانش پزشکی پایه بگذرانید.
-        {% else %}
-          Pass the BI exam, which tests your basic medical knowledge and understanding of the Dutch healthcare system.
+      <label for="password">
+        {% if lang == 'ru' %} Пароль
+        {% elif lang == 'uk' %} Пароль
+        {% elif lang == 'nl' %} Wachtwoord
+        {% elif lang == 'es' %} Contraseña
+        {% elif lang == 'tr' %} Şifre
+        {% elif lang == 'fa' %} رمز عبور
+        {% else %} Password
         {% endif %}
-      </p>
-    </div>
+      </label>
+      <input type="password" id="password" name="password" required>
 
-    <div class="step">
-      <h2>4. Professional Practice Evaluation</h2>
-      <p>
-        {% if lang == 'ru' %}
-          Пройдите стажировки или профессиональную оценку в зависимости от вашего опыта и результатов IDW.
-        {% elif lang == 'uk' %}
-          Пройдіть стажування або професійну оцінку залежно від досвіду.
-        {% elif lang == 'nl' %}
-          Volg stages of beoordelingen op basis van je ervaring en IDW-uitkomst.
-        {% elif lang == 'es' %}
-          Realiza prácticas clínicas u otras evaluaciones según tu experiencia.
-        {% elif lang == 'tr' %}
-          Deneyiminize bağlı olarak staj veya değerlendirmeler tamamlayın.
-        {% elif lang == 'fa' %}
-          بر اساس تجربه خود، کارورزی یا ارزیابی تخصصی انجام دهید.
-        {% else %}
-          Complete clinical internships or assessments depending on your experience and the outcome of your credential evaluation.
-        {% endif %}
-      </p>
-    </div>
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
 
-    <div class="step">
-      <h2>5. Apply for BIG Registration</h2>
-      <p>
-        {% if lang == 'ru' %}
-          После выполнения всех требований подайте заявку на регистрацию в BIG и получите лицензию.
-        {% elif lang == 'uk' %}
-          Подайте заявку на реєстрацію в BIG після виконання всіх умов.
-        {% elif lang == 'nl' %}
-          Dien je BIG-aanvraag in en ontvang je officiële registratie.
-        {% elif lang == 'es' %}
-          Solicita tu registro BIG una vez completados todos los requisitos.
-        {% elif lang == 'tr' %}
-          Tüm adımları tamamladıktan sonra BIG kaydı başvurusunu yapın.
-        {% elif lang == 'fa' %}
-          پس از تکمیل مراحل، برای ثبت‌نام در BIG اقدام کنید.
-        {% else %}
-          After completing all requirements, submit your application for inclusion in the BIG register and receive your official license to work as a dentist in the Netherlands.
+      <button type="submit">
+        {% if lang == 'ru' %} Войти
+        {% elif lang == 'uk' %} Увійти
+        {% elif lang == 'nl' %} Inloggen
+        {% elif lang == 'es' %} Entrar
+        {% elif lang == 'tr' %} Giriş
+        {% elif lang == 'fa' %} ورود
+        {% else %} Log In
         {% endif %}
-      </p>
-    </div>
-  </section>
+      </button>
+    </form>
+  </div>
 {% endblock %}
