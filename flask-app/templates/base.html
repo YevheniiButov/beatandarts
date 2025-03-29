@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Become a Tandarts{% endblock %}</title>
     <link rel="icon" href="/static/favicon.png" />
-      
+
     <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-      
-    <!-- Твой основной стиль -->
+
+    <!-- Основной CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-      
+</head>
 <body>
+
+  <!-- Шапка вне рамки -->
+  {% include "_header.html" %}
+
+  <!-- Контент внутри рамки -->
   <div class="container">
-    {% include "_header.html" %}
-
     {% block content %}{% endblock %}
-
-    {% include "_footer.html" %}
   </div>
+
+  <!-- Подвал вне рамки -->
+  {% include "_footer.html" %}
 
   <script>
     const select = document.querySelector('.lang-switch');
