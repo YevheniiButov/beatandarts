@@ -3,7 +3,7 @@
 {% block title %}Become a Tandarts — Home{% endblock %}
 
 {% block content %}
-  <section class="hero">
+<section class="hero">
     <div class="hero-inner">
       <h1>
         {% if lang == 'ru' %} Начни свой путь к BIG
@@ -15,7 +15,7 @@
         {% else %} Become a Tandarts
         {% endif %}
       </h1>
-
+  
       <p>
         {% if lang == 'ru' %}
           Онлайн подготовка к экзамену для BIG-регистрации в Нидерландах.
@@ -33,19 +33,22 @@
           Start your BIG journey, prepare online for the registration exam.
         {% endif %}
       </p>
-
-      <a href="https://beatandarts-fzmm5jczecx7tuqrptrmhq.streamlit.app/?lang={{ lang }}">
-        {% if lang == 'ru' %} Начать обучение
-        {% elif lang == 'uk' %} Почати навчання
-        {% elif lang == 'nl' %} Begin met leren
-        {% elif lang == 'es' %} Empezar a aprender
-        {% elif lang == 'tr' %} Öğrenmeye başla
-        {% elif lang == 'fa' %} شروع یادگیری
-        {% else %} Start Learning
-        {% endif %}
-      </a>
+  
+      <div class="buttons">
+        <a class="cta-button" href="https://beatandarts-fzmm5jczecx7tuqrptrmhq.streamlit.app/?lang={{ lang }}">
+          {% if lang == 'ru' %} Начать обучение
+          {% elif lang == 'uk' %} Почати навчання
+          {% elif lang == 'nl' %} Begin met leren
+          {% elif lang == 'es' %} Empezar a aprender
+          {% elif lang == 'tr' %} Öğrenmeye başla
+          {% elif lang == 'fa' %} شروع یادگیری
+          {% else %} Start Learning
+          {% endif %}
+        </a>
+      </div>
     </div>
   </section>
+  
 
   <section class="features">
     <h2>

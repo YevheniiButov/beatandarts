@@ -17,7 +17,7 @@ body {
   }
   
   nav a {
-    color: #000000 !important;
+    color: #000 !important;
     text-decoration: none;
     font-weight: 500;
   }
@@ -37,25 +37,33 @@ body {
     margin: 1rem 0 2rem;
   }
   
-  .buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
+  .hero-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
   }
   
-  .buttons a {
+  .cta-button {
     display: inline-block;
     padding: 1rem 2rem;
     background: #7c8b9f;
     color: white;
-    text-decoration: none;
+    border: none;
     border-radius: 8px;
-    font-weight: 500;
-    transition: background 0.3s;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
   }
   
-  .buttons a:hover {
+  .cta-button:hover {
     background: #5d6d7c;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
   }
   
   .features {
@@ -76,7 +84,7 @@ body {
   }
   
   .card {
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     flex: 1 1 200px;
@@ -102,50 +110,23 @@ body {
     color: #888;
   }
   
-  /* MOBILE FRIENDLY */
-  @media (max-width: 768px) {
-    .hero {
-      padding: 2rem 1rem;
-    }
-  
-    .hero h1 {
-      font-size: 1.8rem;
-    }
-  
-    .hero p {
-      font-size: 1rem;
-    }
-  
-    .buttons a {
-      width: 100%;
-      text-align: center;
-    }
-  
-    .features {
-      padding: 2rem 1rem;
-    }
-  
-    .cards {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .card {
-      max-width: 90%;
-    }
-  
-    nav {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-  
-    .lang-switch {
-      margin-top: 0.5rem;
-    }
+  /* Brand Text */
+  .brand-text {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #333;
+    transition: all 0.3s ease;
+    cursor: default;
   }
   
-  /* Floating Button on Mobile */
+  .brand-text:hover {
+    transform: scale(1.05);
+    color: #0077cc;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Floating button (mobile) */
   .mobile-fab {
     display: none;
     position: fixed;
@@ -163,29 +144,7 @@ body {
     z-index: 1000;
   }
   
-  @media (max-width: 768px) {
-    .mobile-fab {
-      display: block;
-    }
-  }
-  
-  /* Logo Branding */
-  .brand-text {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 1.6rem;
-    color: #333;
-    transition: all 0.3s ease;
-    cursor: default;
-  }
-  
-  .brand-text:hover {
-    transform: scale(1.05);
-    color: #0077cc;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Login/Register Form */
+  /* Login & Register */
   .form-container {
     max-width: 400px;
     margin: 3rem auto;
@@ -249,23 +208,7 @@ body {
     text-align: center;
   }
   
-  /* Mobile tweaks */
-  @media (max-width: 480px) {
-    .form-container {
-      padding: 1.5rem 1rem;
-    }
-  
-    form button {
-      max-width: 100%;
-      font-size: 0.95rem;
-    }
-  
-    .form-container h1 {
-      font-size: 1.5rem;
-    }
-  }
-  
-  /* Profile Upload & BIG Steps */
+  /* Profile */
   .profile-title {
     text-align: center;
     font-weight: 400;
@@ -305,7 +248,7 @@ body {
     background-color: #5d6d7c;
   }
   
-  /* Registration Page */
+  /* BIG Page */
   .registration {
     max-width: 900px;
     margin: 0 auto;
@@ -321,7 +264,7 @@ body {
   }
   
   .step {
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 4px 16px rgba(0,0,0,0.04);
@@ -378,7 +321,67 @@ body {
     color: #0077cc;
   }
   
+  /* Mobile */
   @media (max-width: 768px) {
+    .hero {
+      padding: 2rem 1rem;
+    }
+  
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+  
+    .hero p {
+      font-size: 1rem;
+    }
+  
+    .buttons a {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .features {
+      padding: 2rem 1rem;
+    }
+  
+    .cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .card {
+      max-width: 90%;
+    }
+  
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  
+    .lang-switch {
+      margin-top: 0.5rem;
+    }
+  
+    .mobile-fab {
+      display: block;
+    }
+  
+    .form-container {
+      width: 100%;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+  
+    .form-container h1 {
+      font-size: 1.6rem;
+    }
+  
+    .form-container input,
+    .form-container button {
+      font-size: 1rem;
+    }
+  
     .big-layout {
       flex-direction: column;
     }
@@ -389,12 +392,6 @@ body {
       position: relative;
       top: unset;
     }
-  }
-  
-  .hero-inner {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
   }
   
   
