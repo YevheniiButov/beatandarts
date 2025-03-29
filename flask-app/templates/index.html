@@ -4,36 +4,36 @@
 
 {% block content %}
   <section class="hero">
-    <h1>
-      {% if lang == 'ru' %} Начни свой путь к BIG
-      {% elif lang == 'uk' %} Почни свій шлях до BIG
-      {% elif lang == 'nl' %} Begin je BIG-reis
-      {% elif lang == 'es' %} Comienza tu camino hacia el BIG
-      {% elif lang == 'tr' %} BIG yolculuğuna başla
-      {% elif lang == 'fa' %} سفر خود به BIG را آغاز کنید
-      {% else %} Become a Tandarts
-      {% endif %}
-    </h1>
+    <div class="hero-inner">
+      <h1>
+        {% if lang == 'ru' %} Начни свой путь к BIG
+        {% elif lang == 'uk' %} Почни свій шлях до BIG
+        {% elif lang == 'nl' %} Begin je BIG-reis
+        {% elif lang == 'es' %} Comienza tu camino hacia el BIG
+        {% elif lang == 'tr' %} BIG yolculuğuna başla
+        {% elif lang == 'fa' %} سفر خود به BIG را آغاز کنید
+        {% else %} Become a Tandarts
+        {% endif %}
+      </h1>
 
-    <p>
-      {% if lang == 'ru' %}
-        Онлайн подготовка к экзамену для BIG-регистрации в Нидерландах.
-      {% elif lang == 'uk' %}
-        Онлайн підготовка до іспиту для реєстрації BIG у Нідерландах.
-      {% elif lang == 'nl' %}
-        Online voorbereiding op het BIG-examen voor tandartsen.
-      {% elif lang == 'es' %}
-        Preparación en línea para el examen de registro BIG en los Países Bajos.
-      {% elif lang == 'tr' %}
-        Hollanda'da BIG kaydı için çevrim içi hazırlık.
-      {% elif lang == 'fa' %}
-        آمادگی آنلاین برای آزمون ثبت‌نام BIG در هلند.
-      {% else %}
-        Start your BIG journey, prepare online for the registration exam.
-      {% endif %}
-    </p>
+      <p>
+        {% if lang == 'ru' %}
+          Онлайн подготовка к экзамену для BIG-регистрации в Нидерландах.
+        {% elif lang == 'uk' %}
+          Онлайн підготовка до іспиту для реєстрації BIG у Нідерландах.
+        {% elif lang == 'nl' %}
+          Online voorbereiding op het BIG-examen voor tandartsen.
+        {% elif lang == 'es' %}
+          Preparación en línea para el examen de registro BIG en los Países Bajos.
+        {% elif lang == 'tr' %}
+          Hollanda'da BIG kaydı için çevrim içi hazırlık.
+        {% elif lang == 'fa' %}
+          آمادگی آنلاین برای آزمون ثبت‌نام BIG در هلند.
+        {% else %}
+          Start your BIG journey, prepare online for the registration exam.
+        {% endif %}
+      </p>
 
-    <div class="buttons">
       <a href="https://beatandarts-fzmm5jczecx7tuqrptrmhq.streamlit.app/?lang={{ lang }}">
         {% if lang == 'ru' %} Начать обучение
         {% elif lang == 'uk' %} Почати навчання
@@ -63,81 +63,89 @@
       <!-- About the Platform -->
       <div class="card">
         <h3>{% if lang == 'ru' %} О платформе
-        {% elif lang == 'uk' %} Про платформу
-        {% elif lang == 'nl' %} Over het platform
-        {% elif lang == 'es' %} Sobre la plataforma
-        {% elif lang == 'tr' %} Platform hakkında
-        {% elif lang == 'fa' %} درباره پلتفرم
-        {% else %} About the Platform
+          {% elif lang == 'uk' %} Про платформу
+          {% elif lang == 'nl' %} Over het platform
+          {% elif lang == 'es' %} Sobre la plataforma
+          {% elif lang == 'tr' %} Platform hakkında
+          {% elif lang == 'fa' %} درباره پلتفرم
+          {% else %} About the Platform
         {% endif %}</h3>
-        <p>{% if lang == 'ru' %} Онлайн подготовка к BIG-регистрации для иностранных стоматологов.
-        {% elif lang == 'uk' %} Онлайн підготовка до реєстрації BIG для іноземних стоматологів.
-        {% elif lang == 'nl' %} Online voorbereiding op BIG-registratie voor buitenlandse tandartsen.
-        {% elif lang == 'es' %} Preparación en línea para el registro BIG para dentistas extranjeros.
-        {% elif lang == 'tr' %} Yabancı diş hekimleri için BIG kaydı için çevrimiçi hazırlık.
-        {% elif lang == 'fa' %} آمادگی آنلاین برای ثبت‌نام BIG برای دندانپزشکان خارجی.
-        {% else %} Online preparation for BIG registration in the Netherlands for dentists trained abroad.
-        {% endif %}</p>
+        <p>
+          {% if lang == 'ru' %} Онлайн подготовка к BIG-регистрации для иностранных стоматологов.
+          {% elif lang == 'uk' %} Онлайн підготовка до реєстрації BIG для іноземних стоматологів.
+          {% elif lang == 'nl' %} Online voorbereiding op BIG-registratie voor buitenlandse tandartsen.
+          {% elif lang == 'es' %} Preparación en línea para el registro BIG para dentistas extranjeros.
+          {% elif lang == 'tr' %} Yabancı diş hekimleri için BIG kaydı için çevrimiçi hazırlık.
+          {% elif lang == 'fa' %} آمادگی آنلاین برای ثبت‌نام BIG برای دندانپزشکان خارجی.
+          {% else %} Online preparation for BIG registration in the Netherlands for dentists trained abroad.
+          {% endif %}
+        </p>
       </div>
 
       <!-- Tests & Simulations -->
       <div class="card">
         <h3>{% if lang == 'ru' %} Тесты и симуляции
-        {% elif lang == 'uk' %} Тести та симуляції
-        {% elif lang == 'nl' %} Toetsen & Simulaties
-        {% elif lang == 'es' %} Pruebas y simulaciones
-        {% elif lang == 'tr' %} Testler ve Simülasyonlar
-        {% elif lang == 'fa' %} آزمون‌ها و شبیه‌سازی‌ها
-        {% else %} Tests & Simulations
+          {% elif lang == 'uk' %} Тести та симуляції
+          {% elif lang == 'nl' %} Toetsen & Simulaties
+          {% elif lang == 'es' %} Pruebas y simulaciones
+          {% elif lang == 'tr' %} Testler ve Simülasyonlar
+          {% elif lang == 'fa' %} آزمون‌ها و شبیه‌سازی‌ها
+          {% else %} Tests & Simulations
         {% endif %}</h3>
-        <p>{% if lang == 'ru' %} Практика BI-toets и других экзаменов в онлайн-формате.
-        {% elif lang == 'uk' %} Практика BI-toets та інших іспитів онлайн.
-        {% elif lang == 'nl' %} Oefen de BI-toets en andere examens online.
-        {% elif lang == 'es' %} Practica el BI-toets y otros exámenes reales en línea.
-        {% elif lang == 'tr' %} BI-toets ve diğer gerçek sınavları çevrimiçi olarak çöz.
-        {% elif lang == 'fa' %} تمرین BI-toets و سایر آزمون‌های واقعی به صورت آنلاین.
-        {% else %} Practice BI-toets and other real exam simulations online in one place.
-        {% endif %}</p>
+        <p>
+          {% if lang == 'ru' %} Практика BI-toets и других экзаменов в онлайн-формате.
+          {% elif lang == 'uk' %} Практика BI-toets та інших іспитів онлайн.
+          {% elif lang == 'nl' %} Oefen de BI-toets en andere examens online.
+          {% elif lang == 'es' %} Practica el BI-toets y otros exámenes reales en línea.
+          {% elif lang == 'tr' %} BI-toets ve diğer gerçek sınavları çevrimiçi olarak çöz.
+          {% elif lang == 'fa' %} تمرین BI-toets و سایر آزمون‌های واقعی به صورت آنلاین.
+          {% else %} Practice BI-toets and other real exam simulations online in one place.
+          {% endif %}
+        </p>
       </div>
 
       <!-- Learning Materials -->
       <div class="card">
         <h3>{% if lang == 'ru' %} Учебные материалы
-        {% elif lang == 'uk' %} Навчальні матеріали
-        {% elif lang == 'nl' %} Studiemateriaal
-        {% elif lang == 'es' %} Materiales de estudio
-        {% elif lang == 'tr' %} Eğitim materyalleri
-        {% elif lang == 'fa' %} منابع آموزشی
-        {% else %} Learning Materials
+          {% elif lang == 'uk' %} Навчальні матеріали
+          {% elif lang == 'nl' %} Studiemateriaal
+          {% elif lang == 'es' %} Materiales de estudio
+          {% elif lang == 'tr' %} Eğitim materyalleri
+          {% elif lang == 'fa' %} منابع آموزشی
+          {% else %} Learning Materials
         {% endif %}</h3>
-        <p>{% if lang == 'ru' %} Руководства, книги, учебные планы и инструкции по процедуре регистрации.
-        {% elif lang == 'uk' %} Посібники, книги, плани навчання та покрокові інструкції.
-        {% elif lang == 'nl' %} Gidsen, boeken, syllabi en stapsgewijze instructies voor registratie.
-        {% elif lang == 'es' %} Guías, libros y pasos para completar el registro BIG.
-        {% elif lang == 'tr' %} Kılavuzlar, kitaplar, planlar ve kayıt süreci için adımlar.
-        {% elif lang == 'fa' %} راهنماها، کتاب‌ها و مراحل ثبت‌نام BIG به صورت گام به گام.
-        {% else %} Guides, books, syllabi and step-by-step instructions for the full registration procedure.
-        {% endif %}</p>
+        <p>
+          {% if lang == 'ru' %} Руководства, книги, учебные планы и инструкции по процедуре регистрации.
+          {% elif lang == 'uk' %} Посібники, книги, плани навчання та покрокові інструкції.
+          {% elif lang == 'nl' %} Gidsen, boeken, syllabi en stapsgewijze instructies voor registratie.
+          {% elif lang == 'es' %} Guías, libros y pasos para completar el registro BIG.
+          {% elif lang == 'tr' %} Kılavuzlar, kitaplar, planlar ve kayıt süreci için adımlar.
+          {% elif lang == 'fa' %} راهنماها، کتاب‌ها و مراحل ثبت‌نام BIG به صورت گام به گام.
+          {% else %} Guides, books, syllabi and step-by-step instructions for the full registration procedure.
+          {% endif %}
+        </p>
       </div>
 
       <!-- Interactive Tools -->
       <div class="card">
         <h3>{% if lang == 'ru' %} Интерактивные инструменты
-        {% elif lang == 'uk' %} Інтерактивні інструменти
-        {% elif lang == 'nl' %} Interactieve tools
-        {% elif lang == 'es' %} Herramientas interactivas
-        {% elif lang == 'tr' %} Etkileşimli araçlar
-        {% elif lang == 'fa' %} ابزارهای تعاملی
-        {% else %} Interactive Tools
+          {% elif lang == 'uk' %} Інтерактивні інструменти
+          {% elif lang == 'nl' %} Interactieve tools
+          {% elif lang == 'es' %} Herramientas interactivas
+          {% elif lang == 'tr' %} Etkileşimli araçlar
+          {% elif lang == 'fa' %} ابزارهای تعاملی
+          {% else %} Interactive Tools
         {% endif %}</h3>
-        <p>{% if lang == 'ru' %} Карточки, фразы, клинический голландский и практика.
-        {% elif lang == 'uk' %} Картки, фрази, клінічна мова та практика.
-        {% elif lang == 'nl' %} Flashcards, zinnen, medische Nederlands en oefeningen.
-        {% elif lang == 'es' %} Tarjetas, frases clínicas y práctica del neerlandés médico.
-        {% elif lang == 'tr' %} Flaş kartlar, cümleler, klinik Hollandaca ve pratik.
-        {% elif lang == 'fa' %} فلش‌کارت‌ها، اصطلاحات کلینیکی و تمرین زبان هلندی پزشکی.
-        {% else %} Flashcards, vocabulary, clinical phrases and tools to boost your Dutch dental skills.
-        {% endif %}</p>
+        <p>
+          {% if lang == 'ru' %} Карточки, фразы, клинический голландский и практика.
+          {% elif lang == 'uk' %} Картки, фрази, клінічна мова та практика.
+          {% elif lang == 'nl' %} Flashcards, zinnen, medische Nederlands en oefeningen.
+          {% elif lang == 'es' %} Tarjetas, frases clínicas y práctica del neerlandés médico.
+          {% elif lang == 'tr' %} Flaş kartlar, cümleler, klinik Hollandaca ve pratik.
+          {% elif lang == 'fa' %} فلش‌کارت‌ها، اصطلاحات کلینیکی و تمرین زبان هلندی پزشکی.
+          {% else %} Flashcards, vocabulary, clinical phrases and tools to boost your Dutch dental skills.
+          {% endif %}
+        </p>
       </div>
     </div>
   </section>
