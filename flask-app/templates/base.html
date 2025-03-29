@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Become a Tandarts{% endblock %}</title>
+  <link rel="icon" type="image/png" href="/static/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(to bottom, #f7f2ec, #e2eaf1);
+      color: #2a2a2a;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container {
+      background-color: #ffffffee;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+      padding: 2rem;
+    }
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    nav a {
+      color: #2a2a2a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #4f7cac;
+    }
+    .lang-switch {
+      padding: 0.3rem 0.6rem;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff;
+      color: #333;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    {% include "_header.html" %}
+
+    {% block content %}{% endblock %}
+
+    {% include "_footer.html" %}
+  </div>
+
+  <script>
+    const select = document.querySelector('.lang-switch');
+    if (select) {
+      select.addEventListener('change', () => {
+        const lang = select.value;
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        window.location.href = url.toString();
+      });
+    }
+  </script>
+</body>
+</html>
