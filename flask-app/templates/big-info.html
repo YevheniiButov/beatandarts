@@ -1,111 +1,123 @@
-<!-- big-info.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Information about the BIG registration procedure for foreign dentists in the Netherlands.">
-  <meta name="keywords" content="BIG registration, tandarts, Netherlands, dentist license, Dutch dentistry">
-  <meta name="author" content="Become a Tandarts Team">
-  <title>BIG Registration — Step-by-Step Guide</title>
-  <link rel="icon" type="image/png" href="/static/favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(to bottom, #f7f2ec, #e2eaf1);
-      color: #2a2a2a;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      background-color: #ffffff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-    header img {
-      height: 50px;
-    }
-    nav a {
-      margin-left: 2rem;
-      color: #2a2a2a;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: #4f7cac;
-    }
-    .content {
-      padding: 3rem 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    .content h1 {
-      text-align: center;
-      font-weight: 400;
-      font-size: 2.2rem;
-      color: #2f3e46;
-    }
-    .step {
-      background: #ffffff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-top: 2rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-    .step h2 {
-      font-size: 1.2rem;
-      color: #444;
-    }
-    .step p {
-      font-size: 0.95rem;
-      color: #555;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(to bottom, #e2eaf1, #d0d6dc);
-      color: #333;
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="/static/favicon.png" alt="Logo">
-    <nav>
-      <a href="/">Home</a>
-      <a href="/big-info">BIG Info</a>
-      <a href="/register">Register</a>
-    </nav>
-  </header>
-  <section class="content">
-    <h1>BIG Registration Procedure</h1>
+{% extends "base.html" %}
+
+{% block title %}BIG Registration — Step-by-Step Guide{% endblock %}
+
+{% block content %}
+  <section class="content" style="max-width: 900px; margin: auto; padding: 2rem 1.5rem;">
+    <h1 style="text-align: center; font-weight: 400; font-size: 2.2rem; color: #2f3e46;">
+      {% if lang == 'ru' %} Процедура регистрации в BIG
+      {% elif lang == 'uk' %} Процедура реєстрації в BIG
+      {% elif lang == 'nl' %} BIG-registratieprocedure
+      {% elif lang == 'es' %} Procedimiento de registro BIG
+      {% elif lang == 'tr' %} BIG Kaydı Süreci
+      {% elif lang == 'fa' %} روند ثبت‌نام در BIG
+      {% else %} BIG Registration Procedure
+      {% endif %}
+    </h1>
+
     <div class="step">
       <h2>1. Credential Evaluation (IDW)</h2>
-      <p>Submit your foreign diploma and qualifications for recognition through IDW (Internationale Diplomawaardering).</p>
+      <p>
+        {% if lang == 'ru' %}
+          Подайте ваш иностранный диплом и квалификацию на признание через IDW (Internationale Diplomawaardering).
+        {% elif lang == 'uk' %}
+          Надішліть свій диплом і кваліфікацію на визнання через IDW.
+        {% elif lang == 'nl' %}
+          Laat je buitenlandse diploma en kwalificaties erkennen via IDW.
+        {% elif lang == 'es' %}
+          Presenta tu título extranjero para su reconocimiento a través de IDW.
+        {% elif lang == 'tr' %}
+          Yabancı diplomanızı IDW aracılığıyla denklik için gönderin.
+        {% elif lang == 'fa' %}
+          مدرک تحصیلی خود را برای ارزیابی به IDW ارسال کنید.
+        {% else %}
+          Submit your foreign diploma and qualifications for recognition through IDW (Internationale Diplomawaardering).
+        {% endif %}
+      </p>
     </div>
+
     <div class="step">
       <h2>2. Language Proficiency</h2>
-      <p>Demonstrate proficiency in Dutch (minimum B2 level), including medical Dutch, through official exams.</p>
+      <p>
+        {% if lang == 'ru' %}
+          Докажите знание нидерландского языка (минимум уровень B2), включая медицинский голландский.
+        {% elif lang == 'uk' %}
+          Підтвердіть знання нідерландської мови (мінімум B2), включаючи медичну термінологію.
+        {% elif lang == 'nl' %}
+          Toon aan dat je Nederlands beheerst op minimaal B2-niveau, inclusief medisch Nederlands.
+        {% elif lang == 'es' %}
+          Demuestra competencia en neerlandés (mínimo nivel B2), incluyendo terminología médica.
+        {% elif lang == 'tr' %}
+          En az B2 seviyesinde Hollandaca bilgisi gösterin, tıbbi Hollandaca dahil.
+        {% elif lang == 'fa' %}
+          مهارت زبان هلندی خود را تا سطح B2 (به ویژه زبان پزشکی) نشان دهید.
+        {% else %}
+          Demonstrate proficiency in Dutch (minimum B2 level), including medical Dutch.
+        {% endif %}
+      </p>
     </div>
+
     <div class="step">
       <h2>3. BI-Toets (Basic Medical Knowledge)</h2>
-      <p>Pass the BI exam, which tests your basic medical knowledge and understanding of the Dutch healthcare system.</p>
+      <p>
+        {% if lang == 'ru' %}
+          Сдайте экзамен BI, проверяющий базовые медицинские знания и понимание системы здравоохранения Нидерландов.
+        {% elif lang == 'uk' %}
+          Складіть іспит BI, який перевіряє базові медичні знання.
+        {% elif lang == 'nl' %}
+          Slaag voor het BI-examen om je medische basiskennis te bewijzen.
+        {% elif lang == 'es' %}
+          Aprueba el examen BI que evalúa conocimientos médicos básicos.
+        {% elif lang == 'tr' %}
+          BI sınavını geçin, temel tıbbi bilginizi gösterin.
+        {% elif lang == 'fa' %}
+          آزمون BI را برای اثبات دانش پزشکی پایه بگذرانید.
+        {% else %}
+          Pass the BI exam, which tests your basic medical knowledge and understanding of the Dutch healthcare system.
+        {% endif %}
+      </p>
     </div>
+
     <div class="step">
       <h2>4. Professional Practice Evaluation</h2>
-      <p>Complete clinical internships or assessments depending on your experience and the outcome of your credential evaluation.</p>
+      <p>
+        {% if lang == 'ru' %}
+          Пройдите стажировки или профессиональную оценку в зависимости от вашего опыта и результатов IDW.
+        {% elif lang == 'uk' %}
+          Пройдіть стажування або професійну оцінку залежно від досвіду.
+        {% elif lang == 'nl' %}
+          Volg stages of beoordelingen op basis van je ervaring en IDW-uitkomst.
+        {% elif lang == 'es' %}
+          Realiza prácticas clínicas u otras evaluaciones según tu experiencia.
+        {% elif lang == 'tr' %}
+          Deneyiminize bağlı olarak staj veya değerlendirmeler tamamlayın.
+        {% elif lang == 'fa' %}
+          بر اساس تجربه خود، کارورزی یا ارزیابی تخصصی انجام دهید.
+        {% else %}
+          Complete clinical internships or assessments depending on your experience and the outcome of your credential evaluation.
+        {% endif %}
+      </p>
     </div>
+
     <div class="step">
       <h2>5. Apply for BIG Registration</h2>
-      <p>After completing all requirements, submit your application for inclusion in the BIG register and receive your official license to work as a dentist in the Netherlands.</p>
+      <p>
+        {% if lang == 'ru' %}
+          После выполнения всех требований подайте заявку на регистрацию в BIG и получите лицензию.
+        {% elif lang == 'uk' %}
+          Подайте заявку на реєстрацію в BIG після виконання всіх умов.
+        {% elif lang == 'nl' %}
+          Dien je BIG-aanvraag in en ontvang je officiële registratie.
+        {% elif lang == 'es' %}
+          Solicita tu registro BIG una vez completados todos los requisitos.
+        {% elif lang == 'tr' %}
+          Tüm adımları tamamladıktan sonra BIG kaydı başvurusunu yapın.
+        {% elif lang == 'fa' %}
+          پس از تکمیل مراحل، برای ثبت‌نام در BIG اقدام کنید.
+        {% else %}
+          After completing all requirements, submit your application for inclusion in the BIG register and receive your official license to work as a dentist in the Netherlands.
+        {% endif %}
+      </p>
     </div>
   </section>
-  <footer>
-    &copy; 2025 Become a Tandarts. All rights reserved.
-  </footer>
-</body>
-</html>
+{% endblock %}

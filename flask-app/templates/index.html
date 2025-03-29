@@ -68,4 +68,15 @@
       </div>
     </div>
   </section>
+  <a href="/login?lang={{ lang }}" class="mobile-fab">
+    {% if lang == 'ru' %}Начать обучение
+    {% elif lang == 'uk' %}Почати навчання
+    {% elif lang == 'nl' %}Begin met leren
+    {% elif lang == 'es' %}Comenzar
+    {% elif lang == 'tr' %}Başla
+    {% elif lang == 'fa' %}شروع
+    {% else %}Start Learning
+    {% endif %}
+  </a>
+  
 {% endblock %}

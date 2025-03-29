@@ -1,116 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Profile — Become a Tandarts</title>
-  <link rel="icon" type="image/png" href="/static/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(to bottom, #f7f2ec, #e2eaf1);
-      color: #2a2a2a;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      background-color: #ffffff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-    header img {
-      height: 50px;
-    }
-    nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-    nav a {
-      color: #2a2a2a;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: #4f7cac;
-    }
-    .container {
-      max-width: 700px;
-      margin: 4rem auto;
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    h1 {
-      text-align: center;
-      font-weight: 400;
-      color: #2f3e46;
-    }
-    .info {
-      margin-top: 2rem;
-      font-size: 1rem;
-    }
-    .info label {
-      display: block;
-      margin-top: 1.5rem;
-      font-weight: 600;
-    }
-    .info input[type="file"] {
-      margin-top: 0.5rem;
-    }
-    button {
-      margin-top: 2rem;
-      padding: 0.8rem 1.5rem;
-      background-color: #7c8b9f;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #5d6d7c;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(to bottom, #e2eaf1, #d0d6dc);
-      color: #333;
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="/static/favicon.png" alt="Logo">
-    <nav>
-      <a href="/">Home</a>
-      <a href="/big-info">BIG Info</a>
-      <a href="/register">Register</a>
-    </nav>
-  </header>
-  <div class="container">
-    <h1>Welcome to Your Profile</h1>
-    <div class="info">
+{% extends "base.html" %}
+
+{% block title %}Your Profile — Become a Tandarts{% endblock %}
+
+{% block content %}
+  <div class="container" style="max-width: 700px; margin: 3rem auto;">
+    <h1 style="text-align: center; font-weight: 400; color: #2f3e46;">
+      {% if lang == 'ru' %}Добро пожаловать в профиль
+      {% elif lang == 'uk' %}Ласкаво просимо до профілю
+      {% elif lang == 'nl' %}Welkom op je profiel
+      {% elif lang == 'es' %}Bienvenido a tu perfil
+      {% elif lang == 'tr' %}Profiline hoş geldin
+      {% elif lang == 'fa' %}به پروفایل خود خوش آمدید
+      {% else %}Welcome to Your Profile
+      {% endif %}
+    </h1>
+
+    <div class="info" style="margin-top: 2rem; font-size: 1rem;">
       <p><strong>Name:</strong> {{ name }}</p>
       <p><strong>Email:</strong> {{ email }}</p>
 
-      <form action="/upload" method="post" enctype="multipart/form-data">
-        <label for="cv">Upload your CV</label>
+      <form action="{{ url_for('upload', lang=lang) }}" method="post" enctype="multipart/form-data">
+        <label for="cv" style="margin-top: 1.5rem; font-weight: 600;">
+          {% if lang == 'ru' %}Загрузите ваше резюме
+          {% elif lang == 'uk' %}Завантажте своє резюме
+          {% elif lang == 'nl' %}Upload je CV
+          {% elif lang == 'es' %}Sube tu CV
+          {% elif lang == 'tr' %}CV'nizi yükleyin
+          {% elif lang == 'fa' %}رزومه خود را آپلود کنید
+          {% else %}Upload your CV
+          {% endif %}
+        </label>
         <input type="file" id="cv" name="cv">
 
-        <label for="doc">Upload BIG documents</label>
+        <label for="doc" style="margin-top: 1.5rem; font-weight: 600;">
+          {% if lang == 'ru' %}Загрузите документы для BIG
+          {% elif lang == 'uk' %}Завантажте документи для BIG
+          {% elif lang == 'nl' %}Upload BIG-documenten
+          {% elif lang == 'es' %}Sube documentos para BIG
+          {% elif lang == 'tr' %}BIG belgelerini yükleyin
+          {% elif lang == 'fa' %}مدارک BIG را آپلود کنید
+          {% else %}Upload BIG documents
+          {% endif %}
+        </label>
         <input type="file" id="doc" name="doc">
 
-        <button type="submit">Save Documents</button>
+        <button type="submit" style="margin-top: 2rem; padding: 0.8rem 1.5rem; background-color: #7c8b9f; color: white; border: none; border-radius: 6px; font-size: 1rem;">
+          {% if lang == 'ru' %}Сохранить документы
+          {% elif lang == 'uk' %}Зберегти документи
+          {% elif lang == 'nl' %}Documenten opslaan
+          {% elif lang == 'es' %}Guardar documentos
+          {% elif lang == 'tr' %}Belgeleri Kaydet
+          {% elif lang == 'fa' %}ذخیره مدارک
+          {% else %}Save Documents
+          {% endif %}
+        </button>
       </form>
     </div>
   </div>
-  <footer>
-    &copy; 2025 Become a Tandarts. All rights reserved.
-  </footer>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,163 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(to bottom, #f7f2ec, #e2eaf1);
+    color: #2a2a2a;
+  }
+  
+  .container {
+    max-width: 960px;
+    width: 100%;
+    margin: auto;
+    padding: 2rem;
+    background: #ffffffee;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+    margin: 1rem 0 2rem;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .buttons a {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #7c8b9f;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  
+  .buttons a:hover {
+    background: #5d6d7c;
+  }
+  
+  .features {
+    padding: 3rem 2rem;
+  }
+  
+  .features h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    flex: 1 1 200px;
+    max-width: 240px;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .card h3 {
+    margin: 0.75rem 0 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .card p {
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    color: #888;
+  }
+  /* ======== MOBILE FRIENDLY (до 768px) ======== */
+@media (max-width: 768px) {
+    .hero {
+      padding: 2rem 1rem;
+    }
+  
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+  
+    .hero p {
+      font-size: 1rem;
+    }
+  
+    .buttons a {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .features {
+      padding: 2rem 1rem;
+    }
+  
+    .cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .card {
+      max-width: 90%;
+    }
+  
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  
+    .lang-switch {
+      margin-top: 0.5rem;
+    }
+  }
+  /* ===== MOBILE FLOATING BUTTON ===== */
+.mobile-fab {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #7c8b9f;
+    color: white;
+    padding: 0.9rem 1.5rem;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  
+  /* Только на телефонах */
+  @media (max-width: 768px) {
+    .mobile-fab {
+      display: block;
+    }
+  }
+  

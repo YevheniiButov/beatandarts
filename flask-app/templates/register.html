@@ -1,116 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register — Become a Tandarts</title>
-  <link rel="icon" type="image/png" href="/static/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(to bottom, #f7f2ec, #e2eaf1);
-      color: #2a2a2a;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      background-color: #ffffff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-    header img {
-      height: 50px;
-    }
-    nav a {
-      margin-left: 2rem;
-      color: #2a2a2a;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: #4f7cac;
-    }
-    .container {
-      max-width: 500px;
-      margin: 4rem auto;
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    h1 {
-      text-align: center;
-      font-weight: 400;
-      color: #2f3e46;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    label {
-      margin: 1rem 0 0.5rem;
-      font-weight: 500;
-    }
-    input {
-      padding: 0.7rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-    button {
-      margin-top: 2rem;
-      padding: 0.8rem;
-      background-color: #7c8b9f;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #5d6d7c;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(to bottom, #e2eaf1, #d0d6dc);
-      color: #333;
-      font-size: 0.9rem;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="/static/favicon.png" alt="Logo">
-    <nav>
-      <a href="/">Home</a>
-      <a href="/big-info">BIG Info</a>
-      <a href="/register">Register</a>
-    </nav>
-  </header>
-  <div class="container">
-    <h1>Create Your Account</h1>
-    <form action="/register" method="post">
-      <label for="name">Full Name</label>
+{% extends "base.html" %}
+
+{% block title %}Register — Become a Tandarts{% endblock %}
+
+{% block content %}
+  <div class="container" style="max-width: 500px; margin: 2rem auto;">
+    <h1 style="text-align: center; font-weight: 400;">
+      {% if lang == 'ru' %}Создайте аккаунт
+      {% elif lang == 'uk' %}Створіть акаунт
+      {% elif lang == 'nl' %}Maak een account aan
+      {% elif lang == 'es' %}Crea tu cuenta
+      {% elif lang == 'tr' %}Hesap oluştur
+      {% elif lang == 'fa' %}ساخت حساب کاربری
+      {% else %}Create Your Account
+      {% endif %}
+    </h1>
+
+    <form action="{{ url_for('register', lang=lang) }}" method="post" style="display: flex; flex-direction: column;">
+      <label for="name">
+        {% if lang == 'ru' %}Полное имя
+        {% elif lang == 'uk' %}Повне ім’я
+        {% elif lang == 'nl' %}Volledige naam
+        {% elif lang == 'es' %}Nombre completo
+        {% elif lang == 'tr' %}Ad Soyad
+        {% elif lang == 'fa' %}نام کامل
+        {% else %}Full Name
+        {% endif %}
+      </label>
       <input type="text" id="name" name="name" required>
 
-      <label for="email">Email</label>
+      <label for="email">
+        {% if lang == 'ru' %}Электронная почта
+        {% elif lang == 'uk' %}Електронна пошта
+        {% elif lang == 'nl' %}E-mailadres
+        {% elif lang == 'es' %}Correo electrónico
+        {% elif lang == 'tr' %}E-posta
+        {% elif lang == 'fa' %}ایمیل
+        {% else %}Email
+        {% endif %}
+      </label>
       <input type="email" id="email" name="email" required>
 
-      <label for="password">Password</label>
+      <label for="password">
+        {% if lang == 'ru' %}Пароль
+        {% elif lang == 'uk' %}Пароль
+        {% elif lang == 'nl' %}Wachtwoord
+        {% elif lang == 'es' %}Contraseña
+        {% elif lang == 'tr' %}Şifre
+        {% elif lang == 'fa' %}رمز عبور
+        {% else %}Password
+        {% endif %}
+      </label>
       <input type="password" id="password" name="password" required>
 
-      <label for="confirm">Confirm Password</label>
+      <label for="confirm">
+        {% if lang == 'ru' %}Подтвердите пароль
+        {% elif lang == 'uk' %}Підтвердіть пароль
+        {% elif lang == 'nl' %}Bevestig wachtwoord
+        {% elif lang == 'es' %}Confirmar contraseña
+        {% elif lang == 'tr' %}Şifreyi onayla
+        {% elif lang == 'fa' %}تأیید رمز عبور
+        {% else %}Confirm Password
+        {% endif %}
+      </label>
       <input type="password" id="confirm" name="confirm" required>
 
-      <button type="submit">Register</button>
+      <button type="submit" style="margin-top: 2rem; padding: 0.8rem; background-color: #7c8b9f; color: white; border: none; border-radius: 6px; font-size: 1rem;">
+        {% if lang == 'ru' %}Зарегистрироваться
+        {% elif lang == 'uk' %}Зареєструватися
+        {% elif lang == 'nl' %}Registreren
+        {% elif lang == 'es' %}Registrarse
+        {% elif lang == 'tr' %}Kaydol
+        {% elif lang == 'fa' %}ثبت نام
+        {% else %}Register
+        {% endif %}
+      </button>
     </form>
   </div>
-  <footer>
-    &copy; 2025 Become a Tandarts. All rights reserved.
-  </footer>
-</body>
-</html>
+{% endblock %}
