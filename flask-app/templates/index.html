@@ -18,7 +18,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 2rem;
-      background-color: #ffffff;
+      background-color: #f2f2f2;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
     header img {
@@ -48,9 +48,13 @@
       font-size: 1.1rem;
       margin: 1rem 0 2rem;
     }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
     .buttons a {
       display: inline-block;
-      margin: 0.5rem;
       padding: 1rem 2rem;
       background: #7c8b9f;
       color: white;
@@ -62,12 +66,46 @@
     .buttons a:hover {
       background: #5d6d7c;
     }
+    .features {
+      padding: 4rem 2rem;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      flex: 1 1 200px;
+      max-width: 240px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .card img {
+      width: 40px;
+      margin-bottom: 0.75rem;
+    }
+    .card h3 {
+      margin: 0.75rem 0 0.5rem;
+      font-size: 1.1rem;
+    }
+    .card p {
+      font-size: 0.85rem;
+      color: #555;
+    }
     footer {
       text-align: center;
       padding: 2rem;
-      background: linear-gradient(to bottom, #e2eaf1, #d0d6dc);
-      color: #333;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      color: #888;
     }
   </style>
 </head>
@@ -83,11 +121,35 @@
 
   <section class="hero">
     <h1>Become a Tandarts</h1>
-    <p>Prepare for BIG registration with interactive practice tools, resources, and personal support.</p>
+    <p>Start Your BIG Journey, prepare online for the BIG registration exam. Learn, practice, and succeed — all in one place.</p>
     <div class="buttons">
-      <a href="/login">Start Practicing</a>
-      <a href="/big-info">BIG Information</a>
-      <a href="/register">Create Account</a>
+      <a href="/login">Start Learning</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Features</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="/static/platform.png" alt="Platform icon">
+        <h3>About the Platform</h3>
+        <p>Online preparation for BIG registration in the Netherlands for dentists trained abroad.</p>
+      </div>
+      <div class="card">
+        <img src="/static/tests.png" alt="Tests icon">
+        <h3>Tests & Simulations</h3>
+        <p>Practice BI-toets and other real exam simulations online in one place.</p>
+      </div>
+      <div class="card">
+        <img src="/static/materials.png" alt="Materials icon">
+        <h3>Learning Materials</h3>
+        <p>Guides, books, syllabi and step-by-step instructions for the full registration procedure.</p>
+      </div>
+      <div class="card">
+        <img src="/static/tools.png" alt="Tools icon">
+        <h3>Interactive Tools</h3>
+        <p>Flashcards, vocabulary, clinical phrases and tools to boost your Dutch dental skills.</p>
+      </div>
     </div>
   </section>
 
