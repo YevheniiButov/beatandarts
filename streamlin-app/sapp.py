@@ -269,7 +269,11 @@ try:
             save_progress("block3", percent)
             st.success(f"✅ You scored {percent}%! Progress saved. You can now access the next module.")
 
-    if menu == "🏠 Home":
+    if selected_module is None and menu == "Syllabus":
+        st.query_params = {"lang": lang, "module": "block1"}
+        st.rerun()
+
+    elif menu == "🏠 Home":
         st.markdown("""
             <div style="text-align: center; margin-top: -2rem; margin-bottom: 2rem;">
                 <img src="/static/favicon.png" alt="logo" style="height: 60px;" />
