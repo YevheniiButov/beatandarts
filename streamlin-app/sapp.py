@@ -4,6 +4,15 @@ st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wid
 import urllib.parse
 import json
 from pathlib import Path
+from chapters.block1 import anatomy
+
+# Получение query-параметров
+selected_module = st.query_params.get("module", [None])[0]
+st.write("📍 selected_module =", selected_module)
+
+# Если выбран модуль block1 — вызываем анатомию
+if selected_module == "block1":
+    anatomy.show(st.query_params.get("lang", ["en"])[0])
 
 
 # Загрузка модулей, прогресса и сохранение результатов
