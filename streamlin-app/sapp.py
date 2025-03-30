@@ -139,12 +139,11 @@ translations = {
 }
 
 # Получение языка из URL или выбор из списка
-lang = st.sidebar.selectbox(
-    "🌐 Language / Taal / Язык / Idioma",
-    options=list(languages.keys()),
-    format_func=lambda k: languages[k],
-    key="language_select"
-)
+query_params = st.query_params
+lang = query_params.get("lang", [None])[0]
+if lang not in languages:
+    lang = st.sidebar.selectbox("🌐 Language / Taal / Язык / Idioma", options=list(languages.keys()), format_func=lambda k: languages[k])
+
 # Главное меню
 menu = st.sidebar.selectbox("📚 Module:", [
     "🏠 Home",
@@ -284,9 +283,8 @@ try:
 
         st.markdown(f"### {translations['start_title'][lang]}")
         if st.button(translations["start_button"][lang]):
-            st.query_params = {"lang": lang}
-            st.session_state["menu"] = "Syllabus"
-            st.rerun()
+            st.query_params = {"lang": lang, "menu": "Syllabus"}
+        st.rerun()
 
         st.markdown("---")
         col1, col2, col3 = st.columns(3)
