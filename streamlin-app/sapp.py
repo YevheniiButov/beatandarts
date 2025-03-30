@@ -145,13 +145,11 @@ if lang not in languages:
     lang = st.sidebar.selectbox("🌐 Language / Taal / Язык / Idioma", options=list(languages.keys()), format_func=lambda k: languages[k])
 
 # Главное меню
-menu = st.sidebar.selectbox("📚 Module:", [
-    "🏠 Home",
-    "Syllabus",
-    "BI-Toets",
-    "Flashcards (soon)",
-    "Dutch for Dentists (soon)"
-])
+menu_options = ["🏠 Home", "Syllabus", "BI-Toets", "Flashcards (soon)", "Dutch for Dentists (soon)"]
+default_menu = query_params.get("menu", ["🏠 Home"])[0]
+if default_menu not in menu_options:
+    default_menu = "🏠 Home"
+menu = st.sidebar.selectbox("📚 Module:", menu_options, index=menu_options.index(default_menu), key="menu_select")
 
 # Импорты модулей
 try:
@@ -284,7 +282,7 @@ try:
         st.markdown(f"### {translations['start_title'][lang]}")
         if st.button(translations["start_button"][lang]):
             st.query_params = {"lang": lang, "menu": "Syllabus"}
-        st.rerun()
+            st.rerun()
 
         st.markdown("---")
         col1, col2, col3 = st.columns(3)
