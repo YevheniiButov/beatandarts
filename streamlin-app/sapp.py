@@ -1,7 +1,7 @@
 import streamlit as st
-import urllib.parse
-
 st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
+
+import urllib.parse
 import json
 from pathlib import Path
 
