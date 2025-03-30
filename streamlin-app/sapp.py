@@ -139,11 +139,12 @@ translations = {
 }
 
 # Получение языка из URL или выбор из списка
-query_params = st.query_params
-lang = query_params.get("lang", [None])[0]
-if lang not in languages:
-    lang = st.sidebar.selectbox("🌐 Language / Taal / Язык / Idioma", options=list(languages.keys()), format_func=lambda k: languages[k])
-
+lang = st.sidebar.selectbox(
+    "🌐 Language / Taal / Язык / Idioma",
+    options=list(languages.keys()),
+    format_func=lambda k: languages[k],
+    key="language_select"
+)
 # Главное меню
 menu = st.sidebar.selectbox("📚 Module:", [
     "🏠 Home",
