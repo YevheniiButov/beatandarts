@@ -164,7 +164,7 @@ try:
 
         st.markdown(f"### {translations['start_title'][lang]}")
         if st.button(translations["start_button"][lang]):
-            st.experimental_set_query_params(lang=lang)
+            st.query_params = lang=lang)
             st.session_state["menu"] = "Syllabus"
             st.experimental_rerun()
 
