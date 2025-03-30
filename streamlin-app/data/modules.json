@@ -1,0 +1,45 @@
+[
+    {
+      "id": "block1",
+      "title": {
+        "en": "Anatomy and Physiology",
+        "ru": "Анатомия и физиология"
+      },
+      "description": {
+        "en": "Basic medical and dental anatomy.",
+        "ru": "Основы анатомии и физиологии для стоматологов."
+      },
+      "prerequisite": null
+    },
+    {
+      "id": "block2",
+      "title": {
+        "en": "Orthodontics",
+        "ru": "Ортодонтия"
+      },
+      "description": {
+        "en": "Brackets, retainers, and principles of tooth movement.",
+        "ru": "Брекеты, ретенция и принципы перемещения зубов."
+      },
+      "prerequisite": {
+        "module_id": "block1",
+        "min_score": 70
+      }
+    },
+    {
+      "id": "block3",
+      "title": {
+        "en": "Endodontics",
+        "ru": "Эндодонтия"
+      },
+      "description": {
+        "en": "Root canal treatments and endodontic instruments.",
+        "ru": "Лечение корневых каналов и эндодонтические инструменты."
+      },
+      "prerequisite": {
+        "module_id": "block2",
+        "min_score": 70
+      }
+    }
+  ]
+  
