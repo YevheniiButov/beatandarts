@@ -34,7 +34,7 @@ labels = {
 }
 
 def render(lang):
-    chapter_select = st.selectbox("📖 Kies een hoofdstuk:", list(chapters.keys()))
+    chapter_select = st.selectbox("📖 Kies een hoofdstuk:", list(chapters.keys()), key="chapter_select")
     chapter = chapters[chapter_select].get_content()
 
     st.title(f"🦷 {chapter_select}")

@@ -101,10 +101,11 @@ translations = {
 query_params = st.query_params
 lang = query_params.get("lang", [None])[0]
 if lang not in languages:
-    lang = st.sidebar.selectbox("🌐 Language / Taal / Язык / Idioma", options=list(languages.keys()), format_func=lambda k: languages[k])
+    lang = st.sidebar.selectbox("🌐 Language / Taal / Язык / Idioma", options=list(languages.keys()), format_func=lambda k: languages[k], key="language_select_block1")
+
 
 # Главное меню
-menu = st.sidebar.selectbox("📚 Module:", [
+menu = st.sidebar.selectbox("📚 Module:", [...], key="module_select_block1")
     "🏠 Home",
     "Syllabus",
     "BI-Toets",
