@@ -208,7 +208,8 @@ try:
             percent = round((score / 3) * 100)
             save_progress("block1", percent)
             st.success(f"✅ You scored {percent}%! Progress saved. You can now access the next module.")
-        if selected_module == "block2":
+
+    if selected_module == "block2":
         st.header("🧲 Block 2: Orthodontics")
         st.markdown("""
         In this block, we explore the fundamentals of orthodontics: brackets, retainers, and biomechanics of tooth movement.
@@ -237,6 +238,38 @@ try:
             percent = round((score / 3) * 100)
             save_progress("block2", percent)
             st.success(f"✅ You scored {percent}%! Progress saved. You can now access the next module.")
+
+    if selected_module == "block3":
+        st.header("🦷 Block 3: Endodontics")
+        st.markdown("""
+        This block covers root canal anatomy, instruments, and treatment techniques.
+
+        ### 📌 Topics:
+        - Root canal system
+        - Access cavity preparation
+        - Working length determination
+        - Cleaning and shaping
+        - Obturation
+
+        ---
+
+        ### 🧪 Mini Test
+        """)
+
+        q1 = st.radio("1. What is the purpose of working length determination?", ["To choose the right filling", "To know canal length", "To clean the tooth surface"], index=0)
+        q2 = st.radio("2. Which instrument is used to clean canals?", ["Curette", "Endo file", "Explorer"], index=0)
+        q3 = st.radio("3. What is gutta-percha used for?", ["Irrigation", "Filling canals", "Making crowns"], index=0)
+
+        if st.button("📊 Submit Answers", key="b3quiz"):
+            score = 0
+            if q1 == "To know canal length": score += 1
+            if q2 == "Endo file": score += 1
+            if q3 == "Filling canals": score += 1
+
+            percent = round((score / 3) * 100)
+            save_progress("block3", percent)
+            st.success(f"✅ You scored {percent}%! Progress saved. You can now access the next module.")
+
     if menu == "🏠 Home":
         st.markdown("""
             <div style="text-align: center; margin-top: -2rem; margin-bottom: 2rem;">
