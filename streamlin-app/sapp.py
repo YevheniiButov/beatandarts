@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
 import urllib.parse
 import json
 from pathlib import Path
@@ -41,8 +42,6 @@ modules = load_modules()
 user_progress = load_progress()
 
 
-# Настройка страницы
-st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
 
 # Языки
 languages = {
