@@ -12,8 +12,8 @@ def load_translation(lang):
 
 def show(lang="en"):
     t = load_translation(lang)
-
-    st.title(t.get("block1.title", "🧐 Block 1.1: Anatomie en fysiologie van het kauwstelsel"))
+    st.write("🧪 Loaded translation:", t)  # DEBUG
+        st.title(t.get("block1.title", "🧐 Block 1.1: Anatomie en fysiologie van het kauwstelsel"))
 
     st.markdown(f"""
 ### 🔍 {t.get('block1.chewing.header', 'Физиология жевания и глотания')}
