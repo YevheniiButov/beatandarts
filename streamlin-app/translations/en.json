@@ -1,0 +1,34 @@
+{
+    "block1.title": "Block 1.1: Anatomy and Physiology of the Masticatory System",
+    "block1.chewing.header": "Physiology of Chewing and Swallowing",
+    "block1.chewing.phases": [
+      "Opening the mouth – relaxation of masticatory muscles",
+      "Food intake – coordination of lips, tongue, and incisors",
+      "Grinding – active work of molars and premolars",
+      "Mixing and bolus formation – tongue moves food around"
+    ],
+    "block1.swallowing.phases": [
+      "Oral phase – voluntary: tongue pushes bolus backwards",
+      "Pharyngeal phase – reflex: epiglottis closes trachea",
+      "Esophageal phase – bolus moves to esophagus"
+    ],
+    "block1.chewing.structures": "Tongue, soft palate, epiglottis, pharyngeal muscles",
+    "block1.chewing.nerves": {
+      "V": "n. trigeminus – mastication",
+      "VII": "n. facialis – facial muscles",
+      "IX": "n. glossopharyngeus – sensation & initiation",
+      "X": "n. vagus – swallowing & epiglottis"
+    },
+    "block1.innervation.header": "Innervation and Blood Supply",
+    "block1.innervation.sensory": "Sensory innervation of upper and lower jaw",
+    "block1.innervation.motor": "Motor innervation: m. masseter, temporalis, pterygoideus",
+    "block1.innervation.vessels": "a. maxillaris and a. alveolaris inferior supply jaw and pulp",
+    "block1.innervation.landmarks": "Key landmarks: foramen infraorbitale, mentale, mandibulae",
+    "block1.tmj.header": "Temporomandibular Joint (TMJ)",
+    "block1.tmj.anatomy": "Structures: mandibular head, fossa, disc, capsule, ligaments",
+    "block1.tmj.movements": "Movements: rotation, translation, combination",
+    "block1.tmj.assessment": "Clinical assessment: mouth opening (40–50 mm), deviation, palpation",
+    "block1.tmj.pathology": "TMD: clicking, restricted movement, pain. Dislocations."
+  }
+
+  

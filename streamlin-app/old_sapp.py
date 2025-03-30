@@ -1,10 +1,9 @@
 import streamlit as st
-import urllib.parse
 
 # Настройка страницы
 st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
 
-# Стилизация и логотип
+# Кастомный стиль и логотип
 st.markdown("""
     <style>
     body {
@@ -39,51 +38,52 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Языки
+# Импорты с отладкой
+try:
+    from modules import syllabus, bi_toets, flashcards, dutch_phrases, big_info
+    from utils.progress import get_all_scores, reset_scores
+except Exception as e:
+    st.error(f"❌ Ошибка при импорте модулей: {e}")
+
+# Выбор языка
 languages = {
     "en": "English",
     "nl": "Nederlands",
     "ru": "Русский",
-    "uk": "Українська",
-    "es": "Español",
-    "tr": "Türkçe",
-    "fa": "فارسی",
-    "pt": "Português"
+    "es": "Español"
 }
-
-# Получение языка из URL или выбор из списка
-query_params = st.experimental_get_query_params()
-lang = query_params.get("lang", [None])[0]
-if lang not in languages:
-    lang = st.sidebar.selectbox("🌐 Language / Taal / Язык / Idioma", options=list(languages.keys()), format_func=lambda k: languages[k])
+lang = st.sidebar.selectbox("🌐 Language / Taal / Язык / Idioma", options=list(languages.keys()), format_func=lambda k: languages[k])
 
 # Главное меню
-menu = st.sidebar.selectbox("📚 Module:", [
+menu = st.sidebar.selectbox("📚 Kies een module:", [
     "Syllabus",
+    "Dutch for Dentists",
+    "Flashcards",
     "BI-Toets",
-    "Flashcards (soon)",
-    "Dutch for Dentists (soon)"
 ])
 
-# Импорты модулей
-try:
-    from chapters.block1 import anatomy
-    # from chapters.block2 import orthodontie
-    # from chapters.block3 import endodontie
-    from modules import bi_toets
-    # from modules import flashcards, dutch_phrases
-except Exception as e:
-    st.error(f"❌ Ошибка при импорте модулей: {e}")
-
-# Рендеринг по выбору
+# Отображение выбранного модуля
 try:
     if menu == "Syllabus":
-        anatomy.show(lang)
+        syllabus.render(lang)
+    elif menu == "Dutch for Dentists":
+        dutch_phrases.render(lang)
+    elif menu == "Flashcards":
+        flashcards.render(lang)
     elif menu == "BI-Toets":
         bi_toets.render(lang)
-    elif menu == "Flashcards (soon)":
-        st.info("📌 Flashcards module coming soon.")
-    elif menu == "Dutch for Dentists (soon)":
-        st.info("📌 Dutch practice module coming soon.")
 except Exception as e:
-    st.error(f"❌ Ошибка в модуле '{menu}': {e}")
+    st.error(f"❌ Ошибка при отображении модуля '{menu}': {e}")
+
+# Прогресс и сброс
+try:
+    with st.sidebar.expander("📈 Progress"):
+        scores = get_all_scores()
+        for k, v in scores.items():
+            st.write(f"**{k}**: {v} баллов")
+
+        if st.button("🔁 Reset scores"):
+            reset_scores()
+            st.success("Scores have been reset.")
+except Exception as e:
+    st.error(f"❌ Ошибка в блоке прогресса: {e}")
