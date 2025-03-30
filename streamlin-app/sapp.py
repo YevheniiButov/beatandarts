@@ -284,7 +284,7 @@ try:
         if st.button(translations["start_button"][lang]):
             st.query_params = {"lang": lang}
             st.session_state["menu"] = "Syllabus"
-            st.experimental_rerun()
+            st.rerun()
 
         st.markdown("---")
         col1, col2, col3 = st.columns(3)
@@ -304,7 +304,11 @@ try:
             title = module["title"].get(lang, module["title"].get("en"))
             desc = module["description"].get(lang, module["description"].get("en"))
             prerequisite = module.get("prerequisite")
-            user_score = user_progress.get(required_id, 0) if prerequisite else 100
+            if prerequisite:
+                required_id = prerequisite.get("module_id")
+                user_score = user_progress.get(required_id, 0)
+            else:
+                user_score = 100
 
             locked = False
             if prerequisite:
@@ -323,7 +327,7 @@ try:
                 else:
                     if st.button(f"Open {title}", key=module["id"]):
                         st.query_params = {"lang": lang, "module": module["id"]}
-                        st.experimental_rerun()
+                        st.rerun()
                 st.markdown("---")
     elif menu == "BI-Toets":
         bi_toets.render(lang)
