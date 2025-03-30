@@ -270,7 +270,7 @@ try:
             st.success(f"✅ You scored {percent}%! Progress saved. You can now access the next module.")
 
     if selected_module is None and menu == "Syllabus":
-        st.query_params = {"lang": lang, "module": "block1"}
+        st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
         st.rerun()
 
     elif menu == "🏠 Home":
