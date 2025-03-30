@@ -3,6 +3,9 @@ import urllib.parse
 import json
 from pathlib import Path
 
+import streamlit as st
+st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
+
 # Загрузка модулей, прогресса и сохранение результатов
 
 def load_modules():
