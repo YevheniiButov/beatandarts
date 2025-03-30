@@ -2,6 +2,10 @@ import streamlit as st
 import json
 import os
 
+# 🐛 DEBUG: Print selected module value
+selected_module = st.query_params.get("module", [None])[0]
+st.write("📍 selected_module =", selected_module)
+
 def load_translation(lang):
     file_path = os.path.join("translations", f"{lang}.json")
     try:
