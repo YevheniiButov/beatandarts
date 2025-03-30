@@ -1,5 +1,42 @@
 import streamlit as st
 import urllib.parse
+import json
+from pathlib import Path
+
+# Загрузка модулей, прогресса и сохранение результатов
+
+def load_modules():
+    modules_path = Path("data/modules.json")
+    if modules_path.exists():
+        with open(modules_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return []
+
+def load_progress():
+    progress_path = Path("data/progress.json")
+    if progress_path.exists():
+        with open(progress_path, "r", encoding="utf-8") as f:
+            return json.load(f).get("progress", {})
+    return {}
+
+def save_progress(module_id: str, score: int):
+    path = Path("data/progress.json")
+    data = {"user_id": "demo_user", "progress": {}}
+    if path.exists():
+        with open(path, "r", encoding="utf-8") as f:
+            try:
+                data = json.load(f)
+            except:
+                pass
+    if "progress" not in data:
+        data["progress"] = {}
+    data["progress"][module_id] = max(score, data["progress"].get(module_id, 0))
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+modules = load_modules()
+user_progress = load_progress()
+
 
 # Настройка страницы
 st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
@@ -152,6 +189,54 @@ st.markdown("""
 
 # Отображение контента
 try:
+    selected_module = query_params.get("module", [None])[0]
+    if selected_module == "block1":
+        anatomy.show(lang)
+        st.markdown("---")
+        st.subheader("🧪 Mini Test")
+
+        q1 = st.radio("1. Which nerve innervates the masseter muscle?", ["n. facialis (VII)", "n. trigeminus (V)", "n. glossopharyngeus (IX)"], index=0)
+        q2 = st.radio("2. What is the role of the TMJ?", ["To digest food", "To perform mastication movements", "To swallow"], index=0)
+        q3 = st.radio("3. Where is the foramen mentale located?", ["In the maxilla", "In the mandible", "In the zygomatic bone"], index=0)
+
+        if st.button("📊 Submit Answers"):
+            score = 0
+            if q1 == "n. trigeminus (V)": score += 1
+            if q2 == "To perform mastication movements": score += 1
+            if q3 == "In the mandible": score += 1
+
+            percent = round((score / 3) * 100)
+            save_progress("block1", percent)
+            st.success(f"✅ You scored {percent}%! Progress saved. You can now access the next module.")
+        if selected_module == "block2":
+        st.header("🧲 Block 2: Orthodontics")
+        st.markdown("""
+        In this block, we explore the fundamentals of orthodontics: brackets, retainers, and biomechanics of tooth movement.
+        
+        ### 🦷 Topics:
+        - Fixed appliances
+        - Clear aligners
+        - Retention phase
+        - Tooth movement physiology
+        
+        ---
+        
+        ### 🧪 Mini Test
+        """)
+
+        q1 = st.radio("1. What is the main purpose of a retainer?", ["Move teeth", "Maintain position", "Whiten teeth"], index=0)
+        q2 = st.radio("2. Which appliance is often invisible?", ["Brackets", "Aligners", "Bands"], index=0)
+        q3 = st.radio("3. What type of force moves teeth?", ["Compressive", "Light continuous", "Electrical"], index=0)
+
+        if st.button("📊 Submit Answers", key="b2quiz"):
+            score = 0
+            if q1 == "Maintain position": score += 1
+            if q2 == "Aligners": score += 1
+            if q3 == "Light continuous": score += 1
+
+            percent = round((score / 3) * 100)
+            save_progress("block2", percent)
+            st.success(f"✅ You scored {percent}%! Progress saved. You can now access the next module.")
     if menu == "🏠 Home":
         st.markdown("""
             <div style="text-align: center; margin-top: -2rem; margin-bottom: 2rem;">
@@ -164,7 +249,7 @@ try:
 
         st.markdown(f"### {translations['start_title'][lang]}")
         if st.button(translations["start_button"][lang]):
-            st.query_params = lang=lang)
+            st.query_params = {"lang": lang}
             st.session_state["menu"] = "Syllabus"
             st.experimental_rerun()
 
@@ -185,10 +270,27 @@ try:
         for module in modules:
             title = module["title"].get(lang, module["title"].get("en"))
             desc = module["description"].get(lang, module["description"].get("en"))
+            prerequisite = module.get("prerequisite")
+            user_score = user_progress.get(required_id, 0) if prerequisite else 100
+
+            locked = False
+            if prerequisite:
+                required_id = prerequisite.get("module_id")
+                min_score = prerequisite.get("min_score", 0)
+                # пока временно: если prerequisite есть — блокируем
+                # (в будущем здесь проверим user_score из progress.json)
+                locked = user_score < min_score
+
+
             with st.container():
                 st.markdown(f"### {title}")
                 st.markdown(f"📝 {desc}")
-                st.button(f"Open {title}", key=module["id"])
+                if locked:
+                    st.warning("🔒 Locked — complete the previous module to unlock.")
+                else:
+                    if st.button(f"Open {title}", key=module["id"]):
+                        st.query_params = {"lang": lang, "module": module["id"]}
+                        st.experimental_rerun()
                 st.markdown("---")
     elif menu == "BI-Toets":
         bi_toets.render(lang)
