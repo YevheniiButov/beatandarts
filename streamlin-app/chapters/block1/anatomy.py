@@ -1,9 +1,6 @@
 import streamlit as st
 import urllib.parse
 
-# Настройка страницы
-st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
-
 # Языки
 languages = {
     "en": "English",
