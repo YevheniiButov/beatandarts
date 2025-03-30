@@ -337,8 +337,9 @@ try:
                     st.warning("🔒 Locked — complete the previous module to unlock.")
                 else:
                     if st.button(f"Open {title}", key=module["id"]):
-                        st.query_params = {"lang": lang, "module": module["id"]}
+                        st.query_params.update({"lang": lang, "module": module["id"]})
                         st.rerun()
+
                 st.markdown("---")
     elif menu == "BI-Toets":
         bi_toets.render(lang)
