@@ -1,10 +1,10 @@
 import streamlit as st
-st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
 import json
 from pathlib import Path
 from chapters.block1 import anatomy
 from modules import bi_toets
 
+st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
 
 # Загрузка данных
 def load_modules():
@@ -59,30 +59,24 @@ if def_menu not in menu_options:
     def_menu = "🏠 Home"
 menu = st.sidebar.selectbox("📚 Module:", menu_options, index=menu_options.index(def_menu), key="menu_select")
 
-
 modules = load_modules()
 user_progress = load_progress()
-selected_module = query_params.get("module", [None])[0]
-
-# Рендеринг модулей
-if selected_module == "block1":
-    anatomy.show(lang)
-
-if selected_module == "block2":
-    st.header("🧲 Block 2: Orthodontics")
-    st.write("Coming soon...")
-
-if selected_module == "block3":
-    st.header("🦷 Block 3: Endodontics")
-    st.write("Coming soon...")
-
-if selected_module is None and menu == "Syllabus":
-    st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
-    st.rerun()
 
 # Интерфейс Syllabus
-elif menu == "Syllabus":
+if menu == "Syllabus":
     st.subheader("📘 Available Modules")
+    selected_module = query_params.get("module", [None])[0]
+
+    if selected_module == "block1":
+        anatomy.show(lang)
+
+    elif selected_module == "block2":
+        st.header("🧲 Block 2: Orthodontics")
+        st.write("Coming soon...")
+
+    elif selected_module == "block3":
+        st.header("🦷 Block 3: Endodontics")
+        st.write("Coming soon...")
 
     for module in modules:
         title = module["title"].get(lang, module["title"].get("en"))
@@ -118,6 +112,12 @@ elif menu == "🏠 Home":
         st.rerun()
 
 elif menu == "BI-Toets":
+    # Инициализация переменных с безопасными значениями
+    if "bi_done" not in st.session_state:
+        st.session_state.bi_done = False
+        st.session_state.bi_q_index = 0
+        st.session_state.bi_score = 0
+
     bi_toets.render(lang)
 
 elif menu == "Flashcards (soon)":
