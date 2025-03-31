@@ -2,55 +2,78 @@ import streamlit as st
 import json
 import os
 
-# 🐛 DEBUG: Print selected module value
-selected_module = st.query_params.get("module", [None])[0]
-st.write("📍 selected_module =", selected_module)
-
 def load_translation(lang):
     file_path = os.path.join("translations", f"{lang}.json")
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
-    except:
+    except Exception as e:
+        st.error(f"❌ Translation file error: {e}")
         return {}
 
 def show(lang="en"):
+    st.info(f"🌐 Language: {lang}")
     t = load_translation(lang)
-    st.write("🧪 Loaded translation:", t)  # DEBUG
-    st.title(t.get("block1.title", "🧐 Block 1.1: Anatomie en fysiologie van het kauwstelsel"))
+    st.write("📦 Translation loaded:", t)  # DEBUG
 
-    st.markdown(f"""
-### 🔍 {t.get('block1.chewing.header', 'Физиология жевания и глотания')}
-- **{t.get('block1.chewing.phases', ['Фазы жевания:'])[0]}**
-- **{t.get('block1.chewing.phases', [''])[1]}**
-- **{t.get('block1.chewing.phases', [''])[2]}**
-- **{t.get('block1.chewing.phases', [''])[3]}**
+    st.title(t.get("block1.title", "🧐 Block 1.1: Anatomy and Physiology of the Masticatory System"))
 
-- **{t.get('block1.swallowing.phases', ['Фазы глотания:'])[0]}**
-- **{t.get('block1.swallowing.phases', [''])[1]}**
-- **{t.get('block1.swallowing.phases', [''])[2]}**
+    st.markdown("""
+### 🔍 {chewing_header}
+- **{chewing_0}**
+- **{chewing_1}**
+- **{chewing_2}**
+- **{chewing_3}**
 
-- **{t.get('block1.chewing.structures', 'Участвуют структуры: язык, мягкое нёбо, надгортанник, мышцы глотки')}**
+- **{swallowing_0}**
+- **{swallowing_1}**
+- **{swallowing_2}**
 
-- **Нервы:**
-  - {t.get('block1.chewing.nerves', {}).get('V', '*n. trigeminus (V)* — жевательные мышцы')}
-  - {t.get('block1.chewing.nerves', {}).get('VII', '*n. facialis (VII)* — мимика, контроль губ')}
-  - {t.get('block1.chewing.nerves', {}).get('IX', '*n. glossopharyngeus (IX)* — сенсорика и начало глотания')}
-  - {t.get('block1.chewing.nerves', {}).get('X', '*n. vagus (X)* — глотание, надгортанник')}
+- **{structures}**
 
----
-
-### 💪 {t.get('block1.innervation.header', 'Иннервация и кровоснабжение')}
-- {t.get('block1.innervation.sensory', 'Чувствительная иннервация верхней и нижней челюсти')}
-- {t.get('block1.innervation.motor', 'Моторная иннервация: m. masseter, temporalis, pterygoideus')}
-- {t.get('block1.innervation.vessels', 'Кровоснабжение: a. maxillaris и a. alveolaris inferior')}
-- {t.get('block1.innervation.landmarks', 'Ориентиры: foramen infraorbitale, mentale, mandibulae')}
+- **Nerves:**
+  - {nerve_v}
+  - {nerve_vii}
+  - {nerve_ix}
+  - {nerve_x}
 
 ---
 
-### 🏙️ {t.get('block1.tmj.header', 'ВНЧС (temporomandibulair gewricht)')}
-- {t.get('block1.tmj.anatomy', 'Анатомия: головка, суставная ямка, диск, капсула, связки')}
-- {t.get('block1.tmj.movements', 'Движения: ротация, трансляция, комбинированные')}
-- {t.get('block1.tmj.assessment', 'Клиническая оценка: открытие рта, отклонение, пальпация')}
-- {t.get('block1.tmj.pathology', 'Патологии: TMD, боль, ограничение, вывих')}
-    """)
+### 💪 {innervation_header}
+- {sensory}
+- {motor}
+- {vessels}
+- {landmarks}
+
+---
+
+### 🏙️ {tmj_header}
+- {tmj_anatomy}
+- {tmj_movements}
+- {tmj_assessment}
+- {tmj_pathology}
+    """.format(
+        chewing_header=t.get("block1.chewing.header", "Physiology of Chewing and Swallowing"),
+        chewing_0=t.get("block1.chewing.phases", ["..."])[0],
+        chewing_1=t.get("block1.chewing.phases", ["", "..."])[1],
+        chewing_2=t.get("block1.chewing.phases", ["", "", "..."])[2],
+        chewing_3=t.get("block1.chewing.phases", ["", "", "", "..."])[3],
+        swallowing_0=t.get("block1.swallowing.phases", ["..."])[0],
+        swallowing_1=t.get("block1.swallowing.phases", ["", "..."])[1],
+        swallowing_2=t.get("block1.swallowing.phases", ["", "", "..."])[2],
+        structures=t.get("block1.chewing.structures", "Tongue, soft palate, epiglottis, pharyngeal muscles"),
+        nerve_v=t.get("block1.chewing.nerves", {}).get("V", "n. trigeminus — mastication"),
+        nerve_vii=t.get("block1.chewing.nerves", {}).get("VII", "n. facialis — facial expression"),
+        nerve_ix=t.get("block1.chewing.nerves", {}).get("IX", "n. glossopharyngeus — sensation and swallowing"),
+        nerve_x=t.get("block1.chewing.nerves", {}).get("X", "n. vagus — swallowing and epiglottis"),
+        innervation_header=t.get("block1.innervation.header", "Innervation and Blood Supply"),
+        sensory=t.get("block1.innervation.sensory", "Sensory innervation of the jaws"),
+        motor=t.get("block1.innervation.motor", "Motor innervation: m. masseter, temporalis, pterygoideus"),
+        vessels=t.get("block1.innervation.vessels", "Blood supply: a. maxillaris and a. alveolaris inferior"),
+        landmarks=t.get("block1.innervation.landmarks", "Landmarks: infraorbital, mental, mandibular foramina"),
+        tmj_header=t.get("block1.tmj.header", "Temporomandibular Joint (TMJ)"),
+        tmj_anatomy=t.get("block1.tmj.anatomy", "Anatomy: head, fossa, disc, capsule, ligaments"),
+        tmj_movements=t.get("block1.tmj.movements", "Movements: rotation, translation, combination"),
+        tmj_assessment=t.get("block1.tmj.assessment", "Clinical: opening, deviation, palpation"),
+        tmj_pathology=t.get("block1.tmj.pathology", "TMD: pain, limitation, dislocation")
+    ))
