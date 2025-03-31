@@ -55,7 +55,10 @@ if lang not in languages:
 
 menu_options = ["🏠 Home", "Syllabus", "BI-Toets", "Flashcards (soon)", "Dutch for Dentists (soon)"]
 def_menu = query_params.get("menu", ["🏠 Home"])[0]
+if def_menu not in menu_options:
+    def_menu = "🏠 Home"
 menu = st.sidebar.selectbox("📚 Module:", menu_options, index=menu_options.index(def_menu), key="menu_select")
+
 
 modules = load_modules()
 user_progress = load_progress()
