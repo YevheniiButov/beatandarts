@@ -1,11 +1,12 @@
 import streamlit as st
+
+# ВАЖНО: Должно быть первым
 st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
+
 import json
 from pathlib import Path
 from chapters.block1 import anatomy
 from modules import bi_toets
-
-st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
 
 # Загрузка данных
 def load_modules():
@@ -67,6 +68,7 @@ user_progress = load_progress()
 if menu == "Syllabus":
     st.subheader("📘 Available Modules")
     selected_module = query_params.get("module", [None])[0]
+    st.write("📍 selected_module =", selected_module)
 
     if selected_module == "block1":
         anatomy.show(lang)
