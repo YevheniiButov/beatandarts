@@ -12,9 +12,11 @@ def load_translation(lang):
         return {}
 
 def show(lang="en"):
-    st.info(f"🌐 Language: {lang}")
     t = load_translation(lang)
-    st.write("📦 Translation loaded:", t)  # DEBUG
+
+    if not t:
+        st.warning("⚠️ Could not load translation.")
+        return
 
     st.title(t.get("block1.title", "🧐 Block 1.1: Anatomy and Physiology of the Masticatory System"))
 
