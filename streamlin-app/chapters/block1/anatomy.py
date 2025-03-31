@@ -14,6 +14,9 @@ def load_translation(lang):
 def show(lang="en"):
     t = load_translation(lang)
 
+    # 🔍 Покажем, что именно загружается
+    st.write("📥 LOADED TRANSLATION:", t)
+
     if not t:
         st.warning("⚠️ Could not load translation.")
         return
