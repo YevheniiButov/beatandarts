@@ -68,6 +68,11 @@ user_progress = load_progress()
 if menu == "Syllabus":
     st.subheader("📘 Available Modules")
     selected_module = query_params.get("module", [None])[0]
+
+    if selected_module is None:
+        st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
+        st.rerun()
+
     st.write("📍 selected_module =", selected_module)
 
     if selected_module == "block1":
