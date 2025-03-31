@@ -69,7 +69,7 @@ if menu == "Syllabus":
     st.subheader("📘 Available Modules")
     selected_module = query_params.get("module", [None])[0]
 
-    if selected_module is None:
+    if selected_module is None or selected_module not in [m["id"] for m in modules]:
         st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
         st.rerun()
 
