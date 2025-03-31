@@ -85,6 +85,10 @@ if menu == "Syllabus":
     elif selected_module == "block3":
         st.header("🦷 Block 3: Endodontics")
         st.write("Coming soon...")
+        
+elif menu == "Syllabus":
+    st.subheader("📘 Available Modules")
+    st.write("📦 DEBUG: modules =", modules)
 
     for module in modules:
         title = module["title"].get(lang, module["title"].get("en"))
