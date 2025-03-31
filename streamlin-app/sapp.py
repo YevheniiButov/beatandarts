@@ -71,7 +71,7 @@ if menu == "Syllabus":
 
     if selected_module is None or selected_module not in [m["id"] for m in modules]:
         st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
-        st.rerun()
+        st.stop()
 
     st.write("📍 selected_module =", selected_module)
 
