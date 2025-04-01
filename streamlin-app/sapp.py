@@ -51,16 +51,18 @@ languages = {
     "pt": "Português"
 }
 
-query_params = st.query_params
-lang = query_params.get("lang", [None])[0]
-if lang not in languages:
-    lang = st.sidebar.selectbox("🌐 Language", options=list(languages.keys()), format_func=lambda k: languages[k], key="lang")
+if "selected_module" not in st.session_state:
+    st.session_state.selected_module = None
+
+if "lang" not in st.session_state:
+    st.session_state.lang = "en"
+
+lang = st.session_state.lang
+lang = st.sidebar.selectbox("🌐 Language", options=list(languages.keys()), format_func=lambda k: languages[k], index=list(languages.keys()).index(lang))
+st.session_state.lang = lang
 
 menu_options = ["🏠 Home", "Syllabus", "BI-Toets", "Flashcards (soon)", "Dutch for Dentists (soon)"]
-def_menu = query_params.get("menu", ["🏠 Home"])[0]
-if def_menu not in menu_options:
-    def_menu = "🏠 Home"
-menu = st.sidebar.selectbox("📚 Module:", menu_options, index=menu_options.index(def_menu), key="menu_select")
+menu = st.sidebar.selectbox("📚 Module:", menu_options, key="menu_select")
 
 modules = load_modules()
 user_progress = load_progress()
@@ -68,7 +70,6 @@ user_progress = load_progress()
 # Интерфейс Syllabus
 if menu == "Syllabus":
     st.subheader("📘 Available Modules")
-    selected_module = query_params.get("module", [None])[0]
 
     for module in modules:
         title = module["title"].get(lang, module["title"].get("en"))
@@ -92,13 +93,11 @@ if menu == "Syllabus":
             else:
                 btn_key = f"open_{module['id']}"
                 if st.button(f"Open {title}", key=btn_key):
-                    st.query_params["lang"] = lang
-                    st.query_params["menu"] = "Syllabus"
-                    st.query_params["module"] = str(module['id'])
-                    st.rerun()
+                    st.session_state.selected_module = module["id"]
+                    st.experimental_rerun()
         st.markdown("---")
 
-    selected_module = st.query_params.get("module", [None])[0]
+    selected_module = st.session_state.get("selected_module")
     if selected_module:
         selected = next((m for m in modules if m["id"] == selected_module), None)
         if selected:
@@ -115,10 +114,8 @@ elif menu == "🏠 Home":
     st.title("Become a Tandarts")
     st.write("Platform for foreign dentists in the Netherlands")
     if st.button("🚀 Start Learning"):
-        st.query_params["lang"] = lang
-        st.query_params["menu"] = "Syllabus"
-        st.query_params["module"] = "block1"
-        st.rerun()
+        st.session_state.selected_module = "block1"
+        st.experimental_rerun()
 
 elif menu == "BI-Toets":
     if "bi_done" not in st.session_state:
