@@ -69,31 +69,21 @@ if menu == "Syllabus":
     st.subheader("📘 Available Modules")
     selected_module = query_params.get("module", [None])[0]
 
-    if selected_module is None or selected_module not in [m["id"] for m in modules]:
-        st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
-        st.stop()
-
     st.write("📍 DEBUG: selected_module =", selected_module)
     st.write("📍 DEBUG: lang =", lang)
-
-    if selected_module == "block1":
-        st.warning("⚡ anatomy.show(lang) is about to be called!")
-        anatomy.show(lang)
-        st.success("✅ anatomy.show(lang) was called!")
-
-
-
-    elif selected_module == "block2":
-        st.header("🧲 Block 2: Orthodontics")
-        st.write("Coming soon...")
-
-    elif selected_module == "block3":
-        st.header("🦷 Block 3: Endodontics")
-        st.write("Coming soon...")
-
-elif menu == "Syllabus":
-    st.subheader("📘 Available Modules")
     st.write("📦 DEBUG: modules =", modules)
+
+    if selected_module and selected_module in [m["id"] for m in modules]:
+        if selected_module == "block1":
+            st.warning("⚡ anatomy.show(lang) is about to be called!")
+            anatomy.show(lang)
+            st.success("✅ anatomy.show(lang) was called!")
+        elif selected_module == "block2":
+            st.header("🧲 Block 2: Orthodontics")
+            st.write("Coming soon...")
+        elif selected_module == "block3":
+            st.header("🦷 Block 3: Endodontics")
+            st.write("Coming soon...")
 
     for module in modules:
         title = module["title"].get(lang, module["title"].get("en"))
