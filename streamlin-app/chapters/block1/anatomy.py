@@ -4,7 +4,11 @@ import os
 
 
 def load_translation(lang):
-    file_path = os.path.join("translations", f"{lang}.json")
+    # Получаем путь к файлу перевода, независимо от текущей рабочей директории
+    dir_path = os.path.dirname(__file__)
+    file_path = os.path.join(dir_path, "..", "..", "translations", f"{lang}.json")
+    file_path = os.path.abspath(file_path)
+
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
