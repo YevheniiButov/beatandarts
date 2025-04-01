@@ -72,18 +72,6 @@ if menu == "Syllabus":
     st.subheader("📘 Available Modules")
     selected_module = query_params.get("module", [None])[0]
 
-    if selected_module and selected_module in [m["id"] for m in modules]:
-        if selected_module == "block1":
-            st.warning("⚡ anatomy.show(lang) is about to be called!")
-            anatomy.show(lang)
-            st.success("✅ anatomy.show(lang) was called!")
-        elif selected_module == "block2":
-            st.header("🧲 Block 2: Orthodontics")
-            st.write("Coming soon...")
-        elif selected_module == "block3":
-            st.header("🦷 Block 3: Endodontics")
-            st.write("Coming soon...")
-
     for module in modules:
         title = module["title"].get(lang, module["title"].get("en"))
         desc = module["description"].get(lang, module["description"].get("en"))
@@ -106,9 +94,21 @@ if menu == "Syllabus":
             else:
                 btn_key = f"open_{module['id']}"
                 if st.button(f"Open {title}", key=btn_key):
-                    st.query_params = {"lang": lang, "menu": "Syllabus", "module": str(module['id'])}
+                    st.query_params = {"lang": lang, "menu": "Syllabus", "module": module['id']}
                     st.rerun()
             st.markdown("---")
+
+    if selected_module:
+        selected = next((m for m in modules if m["id"] == selected_module), None)
+        if selected:
+            if selected["id"] == "block1":
+                anatomy.show(lang)
+            elif selected["id"] == "block2":
+                st.header("🧲 Block 2: Orthodontics")
+                st.write("Coming soon...")
+            elif selected["id"] == "block3":
+                st.header("🦷 Block 3: Endodontics")
+                st.write("Coming soon...")
 
 elif menu == "🏠 Home":
     st.title("Become a Tandarts")
@@ -118,7 +118,6 @@ elif menu == "🏠 Home":
         st.rerun()
 
 elif menu == "BI-Toets":
-    # Инициализация переменных с безопасными значениями
     if "bi_done" not in st.session_state:
         st.session_state.bi_done = False
         st.session_state.bi_q_index = 0
