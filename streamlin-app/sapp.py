@@ -15,9 +15,7 @@ def load_modules():
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
     else:
-        st.error("❌ modules.json not found!")
-    return []
-
+        return []
 
 def load_progress():
     path = Path("data/progress.json")
@@ -94,7 +92,9 @@ if menu == "Syllabus":
             else:
                 btn_key = f"open_{module['id']}"
                 if st.button(f"Open {title}", key=btn_key):
-                    st.query_params = {"lang": lang, "menu": "Syllabus", "module": module['id']}
+                    st.query_params["lang"] = lang
+                    st.query_params["menu"] = "Syllabus"
+                    st.query_params["module"] = str(module['id'])
                     st.rerun()
         st.markdown("---")
 
@@ -115,7 +115,9 @@ elif menu == "🏠 Home":
     st.title("Become a Tandarts")
     st.write("Platform for foreign dentists in the Netherlands")
     if st.button("🚀 Start Learning"):
-        st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
+        st.query_params["lang"] = lang
+        st.query_params["menu"] = "Syllabus"
+        st.query_params["module"] = "block1"
         st.rerun()
 
 elif menu == "BI-Toets":
