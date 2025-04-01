@@ -94,7 +94,7 @@ if menu == "Syllabus":
                 btn_key = f"open_{module['id']}"
                 if st.button(f"Open {title}", key=btn_key):
                     st.session_state.selected_module = module["id"]
-                    st.experimental_rerun()
+                    st.rerun()
         st.markdown("---")
 
     selected_module = st.session_state.get("selected_module")
@@ -115,7 +115,7 @@ elif menu == "🏠 Home":
     st.write("Platform for foreign dentists in the Netherlands")
     if st.button("🚀 Start Learning"):
         st.session_state.selected_module = "block1"
-        st.experimental_rerun()
+        st.rerun()
 
 elif menu == "BI-Toets":
     if "bi_done" not in st.session_state:
