@@ -1,4 +1,6 @@
 import streamlit as st
+# ВАЖНО: Должно быть первым
+st.set_page_config(page_title="Become a Tandarts", page_icon="🦷", layout="wide")
 import json
 from pathlib import Path
 from chapters.block1 import anatomy
