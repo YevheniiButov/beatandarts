@@ -13,6 +13,8 @@ def load_translation(lang):
 
 def show(lang="en"):
     t = load_translation(lang)
+    st.warning("📢 Вызвана функция anatomy.show(lang)")
+
 
     # 🔍 Покажем, что именно загружается
     st.write("📥 LOADED TRANSLATION:", t)

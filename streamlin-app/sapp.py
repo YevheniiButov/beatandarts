@@ -73,7 +73,8 @@ if menu == "Syllabus":
         st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
         st.stop()
 
-    st.write("📍 selected_module =", selected_module)
+    st.write("📍 DEBUG: selected_module =", selected_module)
+    st.write("📍 DEBUG: lang =", lang)
 
     if selected_module == "block1":
         anatomy.show(lang)
@@ -85,7 +86,7 @@ if menu == "Syllabus":
     elif selected_module == "block3":
         st.header("🦷 Block 3: Endodontics")
         st.write("Coming soon...")
-        
+
 elif menu == "Syllabus":
     st.subheader("📘 Available Modules")
     st.write("📦 DEBUG: modules =", modules)
