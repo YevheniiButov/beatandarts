@@ -10,7 +10,7 @@ from modules import bi_toets
 
 # Загрузка данных
 def load_modules():
-    path = Path("data/modules.json")
+    path = Path("streamlin-app/data/modules.json")
     st.write("📁 DEBUG: modules.json path =", path.resolve())
     if path.exists():
         with open(path, "r", encoding="utf-8") as f:
