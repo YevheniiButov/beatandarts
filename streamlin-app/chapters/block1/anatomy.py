@@ -2,6 +2,7 @@ import streamlit as st
 import json
 import os
 
+
 def load_translation(lang):
     file_path = os.path.join("translations", f"{lang}.json")
     try:
@@ -11,10 +12,10 @@ def load_translation(lang):
         st.error(f"❌ Translation file error: {e}")
         return {}
 
+
 def show(lang="en"):
     t = load_translation(lang)
     st.warning("📢 Вызвана функция anatomy.show(lang)")
-
 
     # 🔍 Покажем, что именно загружается
     st.write("📥 LOADED TRANSLATION:", t)
