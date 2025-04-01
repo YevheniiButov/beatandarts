@@ -11,10 +11,14 @@ from modules import bi_toets
 # Загрузка данных
 def load_modules():
     path = Path("data/modules.json")
+    st.write("📁 DEBUG: modules.json path =", path.resolve())
     if path.exists():
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
+    else:
+        st.error("❌ modules.json not found!")
     return []
+
 
 def load_progress():
     path = Path("data/progress.json")
