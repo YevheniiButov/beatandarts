@@ -46,6 +46,16 @@ if "bi_q_index" not in st.session_state:
 def render(lang):
     st.title("🧪 BI-toets voorbereiding")
 
+    if "bi_done" not in st.session_state:
+    st.session_state.bi_done = False
+if "bi_q_index" not in st.session_state:
+    st.session_state.bi_q_index = 0
+if "bi_score" not in st.session_state:
+    st.session_state.bi_score = 0
+if "bi_confirmed" not in st.session_state:
+    st.session_state.bi_confirmed = False
+
+
     if st.session_state.bi_done:
         st.success(f"Je hebt {st.session_state.bi_score} van {len(questions)} goed beantwoord!")
         if st.button("🔁 Opnieuw beginnen"):
