@@ -77,7 +77,10 @@ if menu == "Syllabus":
     st.write("📍 DEBUG: lang =", lang)
 
     if selected_module == "block1":
-        anatomy.show(lang)
+    st.warning("⚡ anatomy.show(lang) is about to be called!")
+    anatomy.show(lang)
+    st.success("✅ anatomy.show(lang) was called!")
+
 
     elif selected_module == "block2":
         st.header("🧲 Block 2: Orthodontics")
