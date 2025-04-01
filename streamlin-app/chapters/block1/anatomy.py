@@ -1,91 +1,85 @@
-import streamlit as st
-import json
-import os
+📘 Available Modules
+Anatomy and Physiology
+📝 Basic medical and dental anatomy.
 
+Orthodontics
+📝 Brackets, retainers, and principles of tooth movement.
 
-def load_translation(lang):
-    # Получаем путь к файлу перевода, независимо от текущей рабочей директории
-    dir_path = os.path.dirname(__file__)
-    file_path = os.path.join(dir_path, "..", "..", "translations", f"{lang}.json")
-    file_path = os.path.abspath(file_path)
+🔒 Locked — complete the previous module to unlock.
 
-    try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        st.error(f"❌ Translation file error: {e}")
-        return {}
+Endodontics
+📝 Root canal anatomy, instruments and obturation.
 
+🔒 Locked — complete the previous module to unlock.
 
-def show(lang="en"):
-    t = load_translation(lang)
-    st.warning("📢 Вызвана функция anatomy.show(lang)")
+✅ You opened: Anatomy and Physiology
+📢 Вызвана функция anatomy.show(lang)
 
-    # 🔍 Покажем, что именно загружается
-    st.write("📥 LOADED TRANSLATION:", t)
+📥 LOADED TRANSLATION:
 
-    if not t:
-        st.warning("⚠️ Could not load translation.")
-        return
+{
+"block1.title":"Block 1.1: Anatomy and Physiology of the Masticatory System"
+"block1.chewing.header":"Physiology of Chewing and Swallowing"
+"block1.chewing.phases":[
+0:"Opening the mouth – relaxation of masticatory muscles"
+1:"Food intake – coordination of lips, tongue, and incisors"
+2:"Grinding – active work of molars and premolars"
+3:"Mixing and bolus formation – tongue moves food around"
+]
+"block1.swallowing.phases":[
+0:"Oral phase – voluntary: tongue pushes bolus backwards"
+1:"Pharyngeal phase – reflex: epiglottis closes trachea"
+2:"Esophageal phase – bolus moves to esophagus"
+]
+"block1.chewing.structures":"Tongue, soft palate, epiglottis, pharyngeal muscles"
+"block1.chewing.nerves":{
+"V":"n. trigeminus – mastication"
+"VII":"n. facialis – facial muscles"
+"IX":"n. glossopharyngeus – sensation & initiation"
+"X":"n. vagus – swallowing & epiglottis"
+}
+"block1.innervation.header":"Innervation and Blood Supply"
+"block1.innervation.sensory":"Sensory innervation of upper and lower jaw"
+"block1.innervation.motor":"Motor innervation: m. masseter, temporalis, pterygoideus"
+"block1.innervation.vessels":"a. maxillaris and a. alveolaris inferior supply jaw and pulp"
+"block1.innervation.landmarks":"Key landmarks: foramen infraorbitale, mentale, mandibulae"
+"block1.tmj.header":"Temporomandibular Joint (TMJ)"
+"block1.tmj.anatomy":"Structures: mandibular head, fossa, disc, capsule, ligaments"
+"block1.tmj.movements":"Movements: rotation, translation, combination"
+"block1.tmj.assessment":"Clinical assessment: mouth opening (40–50 mm), deviation, palpation"
+"block1.tmj.pathology":"TMD: clicking, restricted movement, pain. Dislocations."
+}
+Block 1.1: Anatomy and Physiology of the Masticatory System
+🔍 Physiology of Chewing and Swallowing
+Opening the mouth – relaxation of masticatory muscles
 
-    st.title(t.get("block1.title", "🧐 Block 1.1: Anatomy and Physiology of the Masticatory System"))
+Food intake – coordination of lips, tongue, and incisors
 
-    st.markdown("""
-### 🔍 {chewing_header}
-- **{chewing_0}**
-- **{chewing_1}**
-- **{chewing_2}**
-- **{chewing_3}**
+Grinding – active work of molars and premolars
 
-- **{swallowing_0}**
-- **{swallowing_1}**
-- **{swallowing_2}**
+Mixing and bolus formation – tongue moves food around
 
-- **{structures}**
+Oral phase – voluntary: tongue pushes bolus backwards
 
-- **Nerves:**
-  - {nerve_v}
-  - {nerve_vii}
-  - {nerve_ix}
-  - {nerve_x}
+Pharyngeal phase – reflex: epiglottis closes trachea
 
----
+Esophageal phase – bolus moves to esophagus
 
-### 💪 {innervation_header}
-- {sensory}
-- {motor}
-- {vessels}
-- {landmarks}
+Tongue, soft palate, epiglottis, pharyngeal muscles
 
----
+Nerves:
 
-### 🏙️ {tmj_header}
-- {tmj_anatomy}
-- {tmj_movements}
-- {tmj_assessment}
-- {tmj_pathology}
-    """.format(
-        chewing_header=t.get("block1.chewing.header", "Physiology of Chewing and Swallowing"),
-        chewing_0=t.get("block1.chewing.phases", ["..."])[0],
-        chewing_1=t.get("block1.chewing.phases", ["", "..."])[1],
-        chewing_2=t.get("block1.chewing.phases", ["", "", "..."])[2],
-        chewing_3=t.get("block1.chewing.phases", ["", "", "", "..."])[3],
-        swallowing_0=t.get("block1.swallowing.phases", ["..."])[0],
-        swallowing_1=t.get("block1.swallowing.phases", ["", "..."])[1],
-        swallowing_2=t.get("block1.swallowing.phases", ["", "", "..."])[2],
-        structures=t.get("block1.chewing.structures", "Tongue, soft palate, epiglottis, pharyngeal muscles"),
-        nerve_v=t.get("block1.chewing.nerves", {}).get("V", "n. trigeminus — mastication"),
-        nerve_vii=t.get("block1.chewing.nerves", {}).get("VII", "n. facialis — facial expression"),
-        nerve_ix=t.get("block1.chewing.nerves", {}).get("IX", "n. glossopharyngeus — sensation and swallowing"),
-        nerve_x=t.get("block1.chewing.nerves", {}).get("X", "n. vagus — swallowing and epiglottis"),
-        innervation_header=t.get("block1.innervation.header", "Innervation and Blood Supply"),
-        sensory=t.get("block1.innervation.sensory", "Sensory innervation of the jaws"),
-        motor=t.get("block1.innervation.motor", "Motor innervation: m. masseter, temporalis, pterygoideus"),
-        vessels=t.get("block1.innervation.vessels", "Blood supply: a. maxillaris and a. alveolaris inferior"),
-        landmarks=t.get("block1.innervation.landmarks", "Landmarks: infraorbital, mental, mandibular foramina"),
-        tmj_header=t.get("block1.tmj.header", "Temporomandibular Joint (TMJ)"),
-        tmj_anatomy=t.get("block1.tmj.anatomy", "Anatomy: head, fossa, disc, capsule, ligaments"),
-        tmj_movements=t.get("block1.tmj.movements", "Movements: rotation, translation, combination"),
-        tmj_assessment=t.get("block1.tmj.assessment", "Clinical: opening, deviation, palpation"),
-        tmj_pathology=t.get("block1.tmj.pathology", "TMD: pain, limitation, dislocation")
-    ))
+n. trigeminus – mastication
+n. facialis – facial muscles
+n. glossopharyngeus – sensation & initiation
+n. vagus – swallowing & epiglottis
+💪 Innervation and Blood Supply
+Sensory innervation of upper and lower jaw
+Motor innervation: m. masseter, temporalis, pterygoideus
+a. maxillaris and a. alveolaris inferior supply jaw and pulp
+Key landmarks: foramen infraorbitale, mentale, mandibulae
+🏙️ Temporomandibular Joint (TMJ)
+Structures: mandibular head, fossa, disc, capsule, ligaments
+Movements: rotation, translation, combination
+Clinical assessment: mouth opening (40–50 mm), deviation, palpation
+TMD: clicking, restricted movement, pain. Dislocations.
