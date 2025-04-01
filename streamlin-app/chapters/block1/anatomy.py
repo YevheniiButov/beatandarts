@@ -26,6 +26,7 @@ def show(lang="en"):
 
     st.title(t.get("block1.title", "🧐 Block 1.1: Anatomy and Physiology of the Masticatory System"))
 
+    # Выводим контент блока до навигации по другим модулям
     st.markdown("""
 ### 🔍 {chewing_header}
 - **{chewing_0}**
