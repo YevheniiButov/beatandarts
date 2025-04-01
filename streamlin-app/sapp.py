@@ -71,6 +71,8 @@ user_progress = load_progress()
 if menu == "Syllabus":
     st.subheader("📘 Available Modules")
 
+    selected_module = st.session_state.get("selected_module")
+
     for module in modules:
         title = module["title"].get(lang, module["title"].get("en"))
         desc = module["description"].get(lang, module["description"].get("en"))
@@ -94,10 +96,9 @@ if menu == "Syllabus":
                 btn_key = f"open_{module['id']}"
                 if st.button(f"Open {title}", key=btn_key):
                     st.session_state.selected_module = module["id"]
-                    st.rerun()
+                    st.experimental_rerun()
         st.markdown("---")
 
-    selected_module = st.session_state.get("selected_module")
     if selected_module:
         selected = next((m for m in modules if m["id"] == selected_module), None)
         if selected:
@@ -115,7 +116,7 @@ elif menu == "🏠 Home":
     st.write("Platform for foreign dentists in the Netherlands")
     if st.button("🚀 Start Learning"):
         st.session_state.selected_module = "block1"
-        st.rerun()
+        st.experimental_rerun()
 
 elif menu == "BI-Toets":
     if "bi_done" not in st.session_state:
