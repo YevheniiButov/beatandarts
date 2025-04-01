@@ -94,9 +94,9 @@ if menu == "Syllabus":
             else:
                 btn_key = f"open_{module['id']}"
                 if st.button(f"Open {title}", key=btn_key):
-                    st.query_params.update({"lang": lang, "menu": "Syllabus", "module": module['id']})
+                    st.query_params = {"lang": lang, "menu": "Syllabus", "module": module['id']}
                     st.rerun()
-            st.markdown("---")
+        st.markdown("---")
 
     selected_module = st.query_params.get("module", [None])[0]
     if selected_module:
@@ -115,7 +115,7 @@ elif menu == "🏠 Home":
     st.title("Become a Tandarts")
     st.write("Platform for foreign dentists in the Netherlands")
     if st.button("🚀 Start Learning"):
-        st.query_params.update({"lang": lang, "menu": "Syllabus", "module": "block1"})
+        st.query_params = {"lang": lang, "menu": "Syllabus", "module": "block1"}
         st.rerun()
 
 elif menu == "BI-Toets":
